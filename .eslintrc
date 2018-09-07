@@ -1,0 +1,21 @@
+{
+	"extends": "airbnb",
+	"parser": "babel-eslint",
+	"rules": {
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["registration"] }],
+		"jsx-a11y/label-has-for": [ 2, {
+				"components": [ "Label" ],
+				"required": {
+						"some": [ "nesting", "id" ]
+				}
+		}]
+	},
+	"globals": {
+		"document": true,
+		"window": true,
+		"navigator": true,
+		"fetch": true
+	}
+
+}

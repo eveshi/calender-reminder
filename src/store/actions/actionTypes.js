@@ -1,0 +1,6 @@
+export const CHANGE_DAY = 'CHANGE_DAY';
+export const CHANGE_YEAR_AND_MONTH = 'CHANGE_YEAR_AND_MONTH';
+export const POST_REMINDER = 'POST_REMINDER';
+export const GET_REMINDER = 'GET_REMINDER';
+export const PUT_REMINDER = 'PUT_REMINDER';
+export const DELETE_REMINDER = 'DELETE_REMINDER';

@@ -1,0 +1,49 @@
+// for responsive design:
+// phone size: < 600px
+// tablet horizon size: 600 ~ 900px
+// tablet vertical size: 900 ~ 1200px
+// normal desktop size
+// big screen destop: > 1800px
+
+@mixin responsive($screenType) {
+  @if ($screenType == 'tablet-vertical') {
+    @media only screen and (max-width:1200px) {
+      @content;
+    }
+  }
+
+  @if ($screenType == 'tablet-horizon') {
+    @media only screen and (max-width:900px) {
+      @content;
+    }
+  }
+
+  @if ($screenType == 'phone') {
+    @media only screen and (max-width:600px) {
+      @content;
+    }
+  }
+
+  @if ($screenType == 'small-phone') {
+    @media only screen and (max-width:400px) {
+      @content;
+    }
+  }
+
+  @if ($screenType == 'big-screen') {
+    @media only screen and (max-width:1800px) {
+      @content;
+    }
+  }
+}
+
+// transition-timing
+@mixin transitionSpeed($speed) {
+  @if ($speed == 'fast') {
+    transition: all .2s ease;
+  }
+
+  @if ($speed == 'middle') {
+    transition: all .5s ease;
+  }
+}

@@ -1,0 +1,32 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 400px) {
+    html {
+      font-size: 50%; } }
+
+body {
+  font-family: 'Ubuntu', sans-serif; }
+
+.button {
+  border: 2px outset #BD924B;
+  height: 4rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #060505;
+  color: #BD924B;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .2s ease; }
+  .button:hover {
+    transform: scale(0.97);
+    border: 2px inset #BD924B;
+    outline: none; }

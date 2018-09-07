@@ -1,0 +1,24 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 400px) {
+    html {
+      font-size: 50%; } }
+
+body {
+  font-family: 'Ubuntu', sans-serif; }
+
+.calender {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  justify-content: center; }
+  .calender__weekday {
+    height: 2rem; }
