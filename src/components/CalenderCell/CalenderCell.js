@@ -11,7 +11,10 @@ const CalenderCell = (props) => {
 
   return (
     <div>
-      <Button onClick={onClick}>
+      <Button
+        onClick={onClick}
+        id={day}
+      >
         {day}
       </Button>
     </div>

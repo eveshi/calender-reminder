@@ -24,7 +24,7 @@ const CHANGE_DAY = (state, action) => {
   const valueToChange = {
     date: {
       ...state.date,
-      ...action.day,
+      day: action.day,
     },
   };
 
@@ -35,8 +35,8 @@ const CHANGE_YEAR_AND_MONTH = (state, action) => {
   const valueToChange = {
     date: {
       ...state.date,
-      ...action.year,
-      ...action.month,
+      year: action.year,
+      month: action.month,
     },
   };
 
@@ -44,14 +44,69 @@ const CHANGE_YEAR_AND_MONTH = (state, action) => {
 };
 
 const POST_REMINDER = (state, action) => {
-  let dateReminders = { ...state.allReminders[action.date] };
+  const dateReminders = [...state.allReminders[action.date]];
   const id = createHash(action.reminder);
-  dateReminders.push()
+  const reminderObject = {
+    id,
+    time: action.time,
+    reminder: action.reminder,
+  };
+  dateReminders.push(reminderObject);
   const valueToChange = {
-    reminder: {
-      ...state.date,
-      ...action.year,
-      ...action.month,
+    allReminders: {
+      ...state.allReminders,
+      [state.date]: dateReminders,
+    },
+  };
+
+  return updateObject(state, valueToChange);
+};
+
+const GET_REMINDER = (state, action) => {
+  const remindersDisplay = [...state.allReminders[action.date]];
+  const valueToChange = {
+    remindersDisplay,
+  };
+
+  return updateObject(state, valueToChange);
+};
+
+const PUT_REMINDER = (state, action) => {
+  const dateReminders = [...state.allReminders[action.date]];
+  const newDateReminders = dateReminders.map((reminder) => {
+    if (reminder.id === action.id) {
+      return {
+        ...reminder,
+        time: action.time,
+        reminder: action.reminder,
+      };
+    }
+
+    return reminder;
+  });
+  const valueToChange = {
+    allReminders: {
+      ...state.allReminders,
+      [state.date]: newDateReminders,
+    },
+  };
+
+  return updateObject(state, valueToChange);
+};
+
+const DELETE_REMINDER = (state, action) => {
+  const dateReminders = [...state.allReminders[action.date]];
+  const newDateReminders = dateReminders.map((reminder) => {
+    if (reminder.id === action.id) {
+      return null;
+    }
+
+    return reminder;
+  });
+  const valueToChange = {
+    allReminders: {
+      ...state.allReminders,
+      [state.date]: newDateReminders,
     },
   };
 
@@ -65,10 +120,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CHANGE_YEAR_AND_MONTH:
       return CHANGE_YEAR_AND_MONTH(state, action);
     case actionTypes.POST_REMINDER:
+      return POST_REMINDER(state, action);
     case actionTypes.PUT_REMINDER:
+      return PUT_REMINDER(state, action);
     case actionTypes.GET_REMINDER:
+      return GET_REMINDER(state, action);
     case actionTypes.DELETE_REMINDER:
-      return updateComment(state, action);
+      return DELETE_REMINDER(state, action);
     default:
       return state;
   }

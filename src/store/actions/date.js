@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 export const CHANGE_DAY = day => ({
-  type: actionTypes.CHANGE_DATE,
+  type: actionTypes.CHANGE_DAY,
   day,
 });
 
