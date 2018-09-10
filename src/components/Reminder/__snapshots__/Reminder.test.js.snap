@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly 1`] = `
+<div
+  className="Reminder"
+>
+  <p
+    className="Reminder_freeDay"
+  >
+    - FREE DAY -
+  </p>
+</div>
+`;

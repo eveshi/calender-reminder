@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly 1`] = `
+<div
+  className="EditReminder"
+>
+  <div
+    className="EditReminder_header"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="Button"
+        disabled={null}
+        id={null}
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon"
+          height="200"
+          viewBox="0 0 1024 1024"
+          width="200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title
+            id="add_reminder"
+          >
+            DELETE
+          </title>
+          <path
+            d="M809.984 274.005333l-237.994667 237.994667 237.994667 237.994667-59.989333 59.989333-237.994667-237.994667-237.994667 237.994667-59.989333-59.989333 237.994667-237.994667-237.994667-237.994667 59.989333-59.989333 237.994667 237.994667 237.994667-237.994667z"
+          />
+        </svg>
+      </button>
+    </a>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="Button"
+        disabled={null}
+        id={null}
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon"
+          height="200"
+          viewBox="0 0 1024 1024"
+          width="200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title
+            id="add_reminder"
+          >
+            DELETE
+          </title>
+          <path
+            d="M384 690.005333l452.010667-452.010667 59.989333 59.989333-512 512-237.994667-237.994667 59.989333-59.989333z"
+          />
+        </svg>
+      </button>
+    </a>
+  </div>
+  <div
+    className="EditReminder_form"
+  >
+    <div
+      id="DatePicker"
+    >
+      DatePicker
+    </div>
+    <div
+      id="TimePicker"
+    >
+      TimePicker
+    </div>
+    <div
+      className="EditReminder_form_input"
+    >
+      <input
+        className="Input"
+        maxLength="50"
+        onChange={[Function]}
+        onKeyPress={null}
+        placeholder="Dinner with Danny..."
+        type="text"
+        value=""
+      />
+      <p>
+        0
+        /50
+      </p>
+    </div>
+  </div>
+</div>
+`;

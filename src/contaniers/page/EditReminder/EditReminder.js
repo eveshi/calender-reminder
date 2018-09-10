@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import DatePicker from '../../../components/DatePicker/DatePicker';
-import TimePicker from '../../../components/TimePicker/TimePicker';
+import ConnectedDatePicker from '../../../components/DatePicker/DatePicker';
+import ConnectedTimePicker from '../../../components/TimePicker/TimePicker';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 
@@ -16,7 +16,7 @@ import Complete from '../../../assets/icon/Complete';
 
 import './EditReminder.css';
 
-class EditReminder extends PureComponent {
+export class EditReminder extends PureComponent {
   state = {
     reminder: '',
     preDate: null,
@@ -134,11 +134,11 @@ class EditReminder extends PureComponent {
           </Link>
         </div>
         <div className="EditReminder_form">
-          <DatePicker
+          <ConnectedDatePicker
             dayPickerDisabled={false}
             datePickerDisabled={false}
           />
-          <TimePicker
+          <ConnectedTimePicker
             hourInit={hourString}
             minuteInit={minuteString}
           />

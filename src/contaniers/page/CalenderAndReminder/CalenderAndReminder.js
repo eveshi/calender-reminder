@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Calender from '../../../components/Calender/Calender';
 import Reminder from '../../../components/Reminder/Reminder';
-import DatePicker from '../../../components/DatePicker/DatePicker';
+import ConnectedDatePicker from '../../../components/DatePicker/DatePicker';
 
 import AddReminder from '../../../assets/icon/AddReminder';
 
@@ -12,7 +12,7 @@ import { CHANGE_DAY } from '../../../store/actions/index';
 
 import './CalenderAndReminder.css';
 
-const CalenderAndReminder = (props) => {
+export const CalenderAndReminder = (props) => {
   const {
     year,
     month,
@@ -29,7 +29,7 @@ const CalenderAndReminder = (props) => {
   return (
     <div className="CalenderAndReminder">
       <div className="CalenderAndReminder_header">
-        <DatePicker applyButtonDisabled={false} />
+        <ConnectedDatePicker applyButtonDisabled={false} />
         <Link to="/edit_reminder">
           <AddReminder />
         </Link>

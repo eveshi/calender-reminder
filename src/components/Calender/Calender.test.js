@@ -2,22 +2,20 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { DatePicker } from './DatePicker';
+import Calender from './Calender';
 
 configure({ adapter: new Adapter() });
 
 const props = {
-  yearInit: 2032,
-  monthInit: 6,
-  dayInit: 28,
-  changeDay: jest.fn(),
-  changeYearAndMonth: jest.fn(),
-  changeSession: jest.fn(),
+  year: 2033,
+  month: 6,
+  day: 2,
+  onClick: jest.fn,
 };
 
 describe('snapshot', () => {
   it('renders correctly', () => {
-    const tree = renderer.create(<DatePicker {...props} />).toJSON();
+    const tree = renderer.create(<Calender {...props} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

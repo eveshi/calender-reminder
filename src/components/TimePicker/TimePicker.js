@@ -7,7 +7,7 @@ import { CHANGE_SESSION } from '../../store/actions/index';
 
 import './TimePicker.css';
 
-class TimePicker extends PureComponent {
+export class TimePicker extends PureComponent {
   state = {
     hourArray: null,
     minuteArray: null,
@@ -20,9 +20,6 @@ class TimePicker extends PureComponent {
       hourInit,
       minuteInit,
     } = this.props;
-
-    console.log(hourInit);
-    console.log(minuteInit);
 
     this.setState({
       hourPicked: hourInit,

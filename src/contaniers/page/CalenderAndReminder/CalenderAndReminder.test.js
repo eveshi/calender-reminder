@@ -3,26 +3,33 @@ import renderer from 'react-test-renderer';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter } from 'react-router-dom';
-import { ReminderDetails } from './ReminderDetails';
+import { CalenderAndReminder } from './CalenderAndReminder';
 
 configure({ adapter: new Adapter() });
 
 const props = {
-  year: 2033,
-  month: 7,
+  year: 2022,
+  month: 3,
   day: 18,
-  id: '12345678',
-  time: 1200,
-  reminder: 'abcdefg',
-  deleteReminder: jest.fn(),
-  changeSession: jest.fn(),
+  changeDay: jest.fn(),
+  reminders: [],
 };
+
+jest.mock('../../../components/DatePicker/DatePicker.js', () => () => (
+  <div id="DatePicker">
+    DatePicker
+  </div>));
+
+jest.mock('../../../components/Reminder/Reminder.js', () => () => (
+  <div id="Reminder">
+    Reminder
+  </div>));
 
 describe('snapshot', () => {
   it('renders correctly', () => {
     const tree = renderer.create(
       <BrowserRouter>
-        <ReminderDetails {...props} />
+        <CalenderAndReminder {...props} />
       </BrowserRouter>,
     ).toJSON();
     expect(tree).toMatchSnapshot();

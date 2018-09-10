@@ -14,7 +14,7 @@ import Delete from '../../../assets/icon/Delete';
 
 import './ReminderDetail.css';
 
-class ReminderDetails extends PureComponent {
+export class ReminderDetails extends PureComponent {
   cleanSession = () => {
     const {
       changeSession,

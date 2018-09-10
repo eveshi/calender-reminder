@@ -9,7 +9,7 @@ import * as actions from '../../store/actions';
 
 import './DatePicker.css';
 
-class DatePicker extends PureComponent {
+export class DatePicker extends PureComponent {
   state = {
     yearArray: null,
     monthArray: null,

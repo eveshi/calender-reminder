@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly 1`] = `
+<div
+  className="DatePicker"
+>
+  <button
+    className="Button"
+    disabled={null}
+    id={null}
+    onClick={[Function]}
+    type="button"
+  >
+    <p
+      className="DatePicker_date"
+    >
+      2032
+    </p>
+    <p
+      className="DatePicker_date"
+    >
+      July
+    </p>
+    <p
+      className="DatePicker_date"
+    >
+      &gt;
+    </p>
+  </button>
+</div>
+`;

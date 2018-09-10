@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders correctly 1`] = `
+<div
+  className="ReminderDetails"
+>
+  <div
+    className="ReminderDetails_header"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="Button"
+        disabled={null}
+        id={null}
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon"
+          height="200"
+          viewBox="0 0 1024 1024"
+          width="200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title
+            id="add_reminder"
+          >
+            DELETE
+          </title>
+          <path
+            d="M809.984 274.005333l-237.994667 237.994667 237.994667 237.994667-59.989333 59.989333-237.994667-237.994667-237.994667 237.994667-59.989333-59.989333 237.994667-237.994667-237.994667-237.994667 59.989333-59.989333 237.994667 237.994667 237.994667-237.994667z"
+          />
+        </svg>
+      </button>
+    </a>
+    <a
+      href="/edit_reminder"
+      onClick={[Function]}
+    >
+      <svg
+        className="icon"
+        height="200"
+        viewBox="0 0 1024 1024"
+        width="200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title
+          id="add_reminder"
+        >
+          ADD_REMINDER
+        </title>
+        <path
+          d="M884.010667 299.989333l-77.994667 77.994667-160-160 77.994667-77.994667q11.989333-11.989333 29.994667-11.989333t29.994667 11.989333l100.010667 100.010667q11.989333 11.989333 11.989333 29.994667t-11.989333 29.994667zM128 736l472.021333-472.021333 160 160-472.021333 472.021333-160 0 0-160z"
+        />
+      </svg>
+    </a>
+  </div>
+  <div
+    className="ReminderDetails_content"
+  >
+    <p
+      className="ReminderDetails_content_time"
+    >
+      2033
+      -
+      7
+      -
+      18
+    </p>
+    <p
+      className="ReminderDetails_content_time"
+    >
+      12:00
+    </p>
+    <p
+      className="ReminderDetails_content_reminder"
+    >
+      abcdefg
+    </p>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        className="Button"
+        disabled={null}
+        id={null}
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon"
+          height="200"
+          viewBox="0 0 1024 1024"
+          width="200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title
+            id="add_reminder"
+          >
+            DELETE
+          </title>
+          <path
+            d="M809.984 169.984l0 86.016-596.010667 0 0-86.016 148.010667 0 43.989333-41.984 212.010667 0 43.989333 41.984 148.010667 0zM256 809.984l0-512 512 0 0 512q0 34.005333-25.984 59.989333t-59.989333 25.984l-340.010667 0q-34.005333 0-59.989333-25.984t-25.984-59.989333z"
+          />
+        </svg>
+      </button>
+    </a>
+  </div>
+</div>
+`;
