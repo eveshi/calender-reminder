@@ -4,6 +4,8 @@ This project is a single-page web-app that can help you set your own reminder on
 
 It is based on React.js + Redux, and React Router is used to handle pages.
 
+All the tests are based on Jest and Enzyme. (You can find them in components folder)
+
 #### Get Start
 1. `git@github.com:eveshi/calender-reminder.git`
 2. `npm install`
@@ -20,5 +22,5 @@ or visit https://calenderreminder.herokuapp.com/.
 
 To the limited time, there are some things to improve.
 
-1. Test. Unit test and integration test will be compeleted if have enough time.
+1. Test. More unit test and integration test will be compeleted if have enough time.
 2. Animation. More Css animation will be used.
