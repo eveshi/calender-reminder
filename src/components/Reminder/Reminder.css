@@ -1,0 +1,57 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 400px) {
+    html {
+      font-size: 50%; } }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F5F5F4; }
+
+a svg {
+  height: 4rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: #5F513F; }
+  a svg:hover {
+    background-color: transparent; }
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css?family=Roboto"); }
+
+.Reminder {
+  min-height: 32rem;
+  border-top: 2px solid #DECDA7;
+  display: flex;
+  flex-direction: column; }
+  .Reminder_freeDay {
+    font-size: 5rem;
+    text-align: center;
+    margin-top: 5rem;
+    font-weight: bold;
+    color: #BD924B;
+    text-shadow: 1px 1px 0.5px #A5A4A2; }
+  .Reminder .Button {
+    border-bottom: 2px dotted;
+    padding-bottom: 0px; }
+    .Reminder .Button a {
+      display: flex;
+      flex-direction: row;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      text-decoration: none;
+      color: #060505; }
+  .Reminder_ReminderCell_timeString {
+    margin-right: 2rem; }
+  .Reminder_ReminderCell_reminder {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis; }

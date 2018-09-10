@@ -1,0 +1,19 @@
+@import '../../stylesheets/main.scss';
+
+.TimePicker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &_select {
+    font-size: 2.4rem;
+    margin: auto .5rem;
+    background-color: transparent;
+    border: none;
+    color: $color-secondary-darker;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

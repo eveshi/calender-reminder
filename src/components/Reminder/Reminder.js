@@ -1,32 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReminderCell from '../ReminderCell/ReminderCell';
+import './Reminder.css';
 
 const Reminder = (props) => {
   const {
     reminders,
   } = props;
 
-  let remindersDisplay = [];
-
-  if (reminders === null) {
-    remindersDisplay = [(
-      <p key="free">
-        You get a free day!
+  const remindersDisplay = reminders.length === 0
+    ? (
+      <p className="Reminder_freeDay">
+        - FREE DAY -
       </p>
-    )];
-  } else {
-    remindersDisplay = reminders.map(reminder => (
+    )
+    : reminders.sort((a, b) => (
+      a.id - b.id
+    )).map(reminder => (
       <ReminderCell
         key={reminders.indexOf(reminder)}
+        id={reminder.id}
         time={reminder.time}
         reminder={reminder.reminder}
       />
     ));
-  }
 
   return (
-    <div>
+    <div className="Reminder">
       {remindersDisplay}
     </div>
   );

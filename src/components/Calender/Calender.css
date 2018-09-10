@@ -12,13 +12,30 @@ html {
       font-size: 50%; } }
 
 body {
-  font-family: 'Ubuntu', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  background-color: #F5F5F4; }
+
+a svg {
+  height: 4rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: #5F513F; }
+  a svg:hover {
+    background-color: transparent; }
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css?family=Roboto"); }
 
 .calender {
-  max-width: 600px;
+  max-width: inherit;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  align-items: center;
-  justify-content: center; }
+  justify-items: center;
+  background-color: #F5F5F4;
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
   .calender__weekday {
-    height: 2rem; }
+    height: 2rem;
+    font-size: 1.8rem;
+    color: #BD924B; }

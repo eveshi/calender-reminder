@@ -1,5 +1,4 @@
 import dateFns from 'date-fns';
-import createHash from 'create-hash';
 import * as actionTypes from '../actions/actionTypes';
 import updateObject from '../utility';
 
@@ -9,6 +8,15 @@ const currentMonth = dateFns.getMonth(currentDate);
 const currentDay = dateFns.getDate(currentDate);
 
 const initialState = {
+  session: {
+    date: null,
+    time: null,
+    reminder: {
+      id: null,
+      time: null,
+      reminder: null,
+    },
+  },
   date: {
     year: currentYear,
     month: currentMonth,
@@ -43,9 +51,50 @@ const CHANGE_YEAR_AND_MONTH = (state, action) => {
   return updateObject(state, valueToChange);
 };
 
+const CHANGE_SESSION = (state, action) => {
+  let valueToChange = {
+    session: {
+      ...state.session,
+      date: action.date,
+      time: action.time,
+    },
+  };
+
+  if (action.time !== null) {
+    valueToChange = {
+      session: {
+        ...state.session,
+        time: action.time,
+      },
+    };
+  }
+
+  if (action.date !== null) {
+    valueToChange = {
+      session: {
+        ...state.session,
+        date: action.date,
+      },
+    };
+  }
+
+  if (action.reminder !== null) {
+    valueToChange = {
+      session: {
+        ...state.session,
+        reminder: action.reminder,
+      },
+    };
+  }
+
+  return updateObject(state, valueToChange);
+};
+
 const POST_REMINDER = (state, action) => {
-  const dateReminders = [...state.allReminders[action.date]];
-  const id = createHash(action.reminder);
+  const dateReminders = state.allReminders[action.date] == null
+    ? []
+    : [...state.allReminders[action.date]];
+  const id = `${action.date}${action.time}`;
   const reminderObject = {
     id,
     time: action.time,
@@ -55,39 +104,7 @@ const POST_REMINDER = (state, action) => {
   const valueToChange = {
     allReminders: {
       ...state.allReminders,
-      [state.date]: dateReminders,
-    },
-  };
-
-  return updateObject(state, valueToChange);
-};
-
-const GET_REMINDER = (state, action) => {
-  const remindersDisplay = [...state.allReminders[action.date]];
-  const valueToChange = {
-    remindersDisplay,
-  };
-
-  return updateObject(state, valueToChange);
-};
-
-const PUT_REMINDER = (state, action) => {
-  const dateReminders = [...state.allReminders[action.date]];
-  const newDateReminders = dateReminders.map((reminder) => {
-    if (reminder.id === action.id) {
-      return {
-        ...reminder,
-        time: action.time,
-        reminder: action.reminder,
-      };
-    }
-
-    return reminder;
-  });
-  const valueToChange = {
-    allReminders: {
-      ...state.allReminders,
-      [state.date]: newDateReminders,
+      [action.date]: dateReminders,
     },
   };
 
@@ -95,19 +112,27 @@ const PUT_REMINDER = (state, action) => {
 };
 
 const DELETE_REMINDER = (state, action) => {
-  const dateReminders = [...state.allReminders[action.date]];
-  const newDateReminders = dateReminders.map((reminder) => {
-    if (reminder.id === action.id) {
-      return null;
-    }
-
-    return reminder;
-  });
+  const dateReminders = state.allReminders[action.date] == null
+    ? []
+    : [...state.allReminders[action.date]];
+  const newDateReminders = dateReminders.filter(reminder => reminder.id !== action.id);
   const valueToChange = {
     allReminders: {
       ...state.allReminders,
-      [state.date]: newDateReminders,
+      [action.date]: newDateReminders,
     },
+  };
+
+  return updateObject(state, valueToChange);
+};
+
+
+const GET_SINGLE_REMINDER = (state, action) => {
+  const singleReminderDisplay = [...state.remindersDisplay].filter(reminder => (
+    reminder.id === action.id
+  ));
+  const valueToChange = {
+    singleReminderDisplay,
   };
 
   return updateObject(state, valueToChange);
@@ -119,12 +144,12 @@ const reducer = (state = initialState, action) => {
       return CHANGE_DAY(state, action);
     case actionTypes.CHANGE_YEAR_AND_MONTH:
       return CHANGE_YEAR_AND_MONTH(state, action);
+    case actionTypes.CHANGE_SESSION:
+      return CHANGE_SESSION(state, action);
     case actionTypes.POST_REMINDER:
       return POST_REMINDER(state, action);
-    case actionTypes.PUT_REMINDER:
-      return PUT_REMINDER(state, action);
-    case actionTypes.GET_REMINDER:
-      return GET_REMINDER(state, action);
+    case actionTypes.GET_SINGLE_REMINDER:
+      return GET_SINGLE_REMINDER(state, action);
     case actionTypes.DELETE_REMINDER:
       return DELETE_REMINDER(state, action);
     default:

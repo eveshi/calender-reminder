@@ -1,0 +1,18 @@
+@import '../../../stylesheets/main.scss';
+
+.CalenderAndReminder {
+  min-height: 100vh;
+  max-width: 900px;
+  background-color: $color-primary-lighter;
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    height: 6rem;
+    align-items: center;
+    padding-right: 1rem;
+    color: $color-secondary-darker;
+    background-color: #ffffff;
+    border-bottom: 2px solid $color-secondary-middle;
+  }
+}

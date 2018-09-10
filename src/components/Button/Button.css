@@ -12,21 +12,32 @@ html {
       font-size: 50%; } }
 
 body {
-  font-family: 'Ubuntu', sans-serif; }
+  font-family: 'Roboto', sans-serif;
+  background-color: #F5F5F4; }
 
-.button {
-  border: 2px outset #BD924B;
+a svg {
   height: 4rem;
-  border-radius: 1rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: #5F513F; }
+  a svg:hover {
+    background-color: transparent; }
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css?family=Roboto"); }
+
+.Button {
+  height: 6rem;
   padding: 1rem;
-  background-color: #060505;
   color: #BD924B;
-  font-size: 1.4rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: bold;
+  outline: none;
   cursor: pointer;
   transition: all .2s ease; }
-  .button:hover {
-    transform: scale(0.97);
-    border: 2px inset #BD924B;
-    outline: none; }
+  .Button:hover {
+    background-color: #ffffff; }

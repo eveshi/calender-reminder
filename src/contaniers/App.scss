@@ -1,1 +1,14 @@
 
+@import '../stylesheets/main.scss';
+
+.layout {
+  width: 900px;
+  border-left: 3px solid $color-primary-middle;
+  border-right: 3px solid $color-primary-middle;
+  margin: auto;
+
+  @include responsive(tablet-horizon) {
+    width: 100vw;
+    border: none;
+  }
+}

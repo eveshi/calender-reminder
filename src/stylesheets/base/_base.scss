@@ -15,5 +15,17 @@ html {
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: $color-primary-light;
+}
+
+a svg {
+  height: 4rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: $color-secondary-darker;
+
+  &:hover {
+    background-color: transparent;
+  }
 }

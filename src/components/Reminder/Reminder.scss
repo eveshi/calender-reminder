@@ -1,0 +1,41 @@
+@import '../../stylesheets/main.scss';
+
+.Reminder {
+  min-height: 32rem;
+  border-top: 2px solid $color-secondary-middle;
+  display: flex;
+  flex-direction: column;
+
+  &_freeDay {
+    font-size: 5rem;
+    text-align: center;
+    margin-top: 5rem;
+    font-weight: bold;
+    color: $color-secondary-dark;
+    text-shadow: 1px 1px 0.5px $color-primary-middle;
+  }
+
+  .Button {
+    border-bottom: 2px dotted;
+    padding-bottom: 0px;
+
+    a {
+      display: flex;
+      flex-direction: row;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      text-decoration: none;
+      color: $color-primary-dark;
+    }
+  }
+
+  &_ReminderCell_timeString {
+    margin-right: 2rem;
+  }
+
+  &_ReminderCell_reminder {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

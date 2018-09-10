@@ -7,10 +7,15 @@ const CalenderCell = (props) => {
   const {
     onClick,
     day,
+    picked,
   } = props;
 
+  const cellClass = picked
+    ? 'Calender_CalenderCell__picked'
+    : 'Calender_CalenderCell__notPicked';
+
   return (
-    <div>
+    <div className={cellClass}>
       <Button
         onClick={onClick}
         id={day}
@@ -24,6 +29,7 @@ const CalenderCell = (props) => {
 CalenderCell.propTypes = {
   onClick: PropTypes.func,
   day: PropTypes.number,
+  picked: PropTypes.bool.isRequired,
 };
 
 CalenderCell.defaultProps = {

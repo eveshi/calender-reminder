@@ -14,7 +14,7 @@ const Input = (props) => {
 
   return (
     <input
-      className="input"
+      className="Input"
       type={type}
       maxLength={maxLength}
       placeholder={placeholder}

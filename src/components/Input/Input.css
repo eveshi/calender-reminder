@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 400px) {
+    html {
+      font-size: 50%; } }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F5F5F4; }
+
+a svg {
+  height: 4rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: #5F513F; }
+  a svg:hover {
+    background-color: transparent; }
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css?family=Roboto"); }
+
+.Input {
+  border: none;
+  background-color: transparent;
+  margin: 1rem auto;
+  font-size: 2.4rem;
+  border-bottom: 2px solid #BD924B;
+  padding-bottom: .5rem;
+  width: 100%;
+  color: #BD924B; }
+  .Input:focus {
+    outline: none; }

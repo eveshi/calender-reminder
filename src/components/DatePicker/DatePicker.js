@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
-import monthTrans from '../../utility/utility';
+import * as utility from '../../utility/utility';
 import Button from '../Button/Button';
-import { CHANGE_DAY, CHANGE_YEAR_AND_MONTH } from '../../store/actions';
+import * as actions from '../../store/actions';
+
+import './DatePicker.css';
 
 class DatePicker extends PureComponent {
   state = {
@@ -23,6 +25,7 @@ class DatePicker extends PureComponent {
       yearInit,
       monthInit,
       dayInit,
+      datePickerDisabled,
     } = this.props;
 
     const currentYear = dateFns.getYear(new Date());
@@ -35,7 +38,7 @@ class DatePicker extends PureComponent {
     for (let i = 0; i < 12; i += 1) {
       const month = {
         index: i,
-        string: monthTrans(i),
+        string: utility.monthStringGenerator(i),
       };
       monthArray.push(month);
     }
@@ -53,10 +56,15 @@ class DatePicker extends PureComponent {
       yearPicked: yearInit,
       monthPicked: monthInit,
       dayPicked: dayInit,
+      datePickerDisabled,
     });
   }
 
   dateChangeHandler = (event, selector) => {
+    const {
+      changeSession,
+    } = this.props;
+
     const { value } = event.target;
     let {
       yearPicked,
@@ -84,6 +92,10 @@ class DatePicker extends PureComponent {
         dayPicked,
       });
     }
+
+    const date = utility.dateStringGenerator(yearPicked, monthPicked, dayPicked);
+
+    changeSession(date);
   }
 
   datePickerDisabledHandler = () => {
@@ -138,6 +150,7 @@ class DatePicker extends PureComponent {
       monthInit,
       dayInit,
       dayPickerDisabled,
+      applyButtonDisabled,
     } = this.props;
 
     const yearOptions = yearArray === null
@@ -177,6 +190,7 @@ class DatePicker extends PureComponent {
       ? null
       : (
         <select
+          className="DatePicker_picker_select"
           value={dayPicked}
           onChange={event => dateChangeHandler(event, 'day')}
         >
@@ -187,31 +201,46 @@ class DatePicker extends PureComponent {
     const dayDisplay = dayPickerDisabled === true
       ? null
       : (
-        <p>{dayInit}</p>
+        <p className="DatePicker_date">{dayInit}</p>
+      );
+
+    const applyButtonDisplay = applyButtonDisabled === true
+      ? null
+      : (
+        <Button
+          onClick={() => applyNewDate()}
+        >
+          Apply
+        </Button>
       );
 
     const monthPicker = datePickerDisabled === true
       ? (
         <Button onClick={() => datePickerDisabledHandler()}>
-          <p>
+          <p className="DatePicker_date">
             {yearInit.toString()}
           </p>
-          <p>
-            {monthTrans(monthInit)}
+          <p className="DatePicker_date">
+            {utility.monthStringGenerator(monthInit)}
           </p>
           {dayDisplay}
+          <p className="DatePicker_date">
+            &gt;
+          </p>
         </Button>
       )
       : (
-        <div>
+        <div className="DatePicker_picker">
           <form>
             <select
+              className="DatePicker_picker_select"
               value={yearPicked}
               onChange={event => dateChangeHandler(event, 'year')}
             >
               {yearOptions}
             </select>
             <select
+              className="DatePicker_picker_select"
               value={monthPicked}
               onChange={event => dateChangeHandler(event, 'month')}
             >
@@ -219,16 +248,12 @@ class DatePicker extends PureComponent {
             </select>
             {dayPicker}
           </form>
-          <Button
-            onClick={() => applyNewDate()}
-          >
-            Apply
-          </Button>
+          {applyButtonDisplay}
         </div>
       );
 
     return (
-      <div>
+      <div className="DatePicker">
         {monthPicker}
       </div>
     );
@@ -241,11 +266,16 @@ DatePicker.propTypes = {
   dayInit: PropTypes.number.isRequired,
   changeDay: PropTypes.func.isRequired,
   changeYearAndMonth: PropTypes.func.isRequired,
+  datePickerDisabled: PropTypes.bool,
   dayPickerDisabled: PropTypes.bool,
+  applyButtonDisabled: PropTypes.bool,
+  changeSession: PropTypes.func.isRequired,
 };
 
 DatePicker.defaultProps = {
   dayPickerDisabled: true,
+  datePickerDisabled: true,
+  applyButtonDisabled: true,
 };
 
 const mapStateToProps = state => ({
@@ -255,8 +285,9 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  changeDay: day => dispatch(CHANGE_DAY(day)),
-  changeYearAndMonth: (year, month) => dispatch(CHANGE_YEAR_AND_MONTH(year, month)),
+  changeDay: day => dispatch(actions.CHANGE_DAY(day)),
+  changeYearAndMonth: (year, month) => dispatch(actions.CHANGE_YEAR_AND_MONTH(year, month)),
+  changeSession: date => dispatch(actions.CHANGE_SESSION(date, null, null)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(DatePicker);

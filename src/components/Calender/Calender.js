@@ -22,7 +22,7 @@ const Calender = (props) => {
     fillArray.push(i);
   }
   if (weekdayOfStartDayOfMonth === 7) {
-    fillArray = null;
+    fillArray = [];
   }
 
   const daysArray = [];
@@ -38,13 +38,17 @@ const Calender = (props) => {
 
   const cells = daysArray === null
     ? null
-    : daysArray.map(dayItem => (
-      <CalenderCell
-        key={dayItem}
-        day={dayItem}
-        onClick={onClick}
-      />
-    ));
+    : daysArray.map((dayItem) => {
+      const picked = (dayItem === day);
+      return (
+        <CalenderCell
+          key={dayItem}
+          day={dayItem}
+          picked={picked}
+          onClick={onClick}
+        />
+      );
+    });
 
   return (
     <div className="calender">

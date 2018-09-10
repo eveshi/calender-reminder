@@ -1,4 +1,6 @@
-const monthTrans = (month) => {
+import dateFns from 'date-fns';
+
+export const monthStringGenerator = (month) => {
   switch (month) {
     case 0:
       return 'Jan.';
@@ -29,4 +31,32 @@ const monthTrans = (month) => {
   }
 };
 
-export default monthTrans;
+export const hourStringGenerator = (hour) => {
+  let hourString = hour.toString();
+  if (hour < 10) {
+    hourString = `0${hour}`;
+  }
+
+  return hourString;
+};
+
+export const minuteStringGenerator = (minute) => {
+  let minuteString = minute.toString();
+  if (minute < 10) {
+    minuteString = `0${minute}`;
+  }
+
+  return minuteString;
+};
+
+export const timeStringGenerator = (time) => {
+  const hour = parseInt(time / 100, 10);
+  const minute = time % 100;
+  const hourString = hourStringGenerator(hour);
+  const minuteString = minuteStringGenerator(minute);
+  return `${hourString}:${minuteString}`;
+};
+
+export const dateStringGenerator = (year, month, day) => (
+  dateFns.format(new Date(year, month, day), 'YYYYMMDD')
+);

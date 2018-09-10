@@ -1,0 +1,54 @@
+@import '../../stylesheets/main.scss';
+
+.DatePicker {
+  display: flex;
+
+  &:focus {
+    outline: none;
+  }
+
+  .Button {
+    display: flex;
+    justify-content: space-around;
+
+    &:hover{
+      background-color: transparent;
+      text-shadow: 2px 0 2px #ffffff;
+      transform: scale(0.98);
+    }
+  }
+
+  &_date {
+    color: $color-secondary-darker;
+    margin: auto .5rem;
+    font-size: 2.4rem;
+  }
+
+  &_picker {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &_select {
+      font-size: 2.4rem;
+      margin: auto .5rem;
+      background-color: transparent;
+      border: none;
+      color: $color-secondary-darker;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .Button {
+      border: 2px solid $color-secondary-dark;
+      border-radius: 1rem;
+      height: 3rem;
+      font-size: 1.4rem;
+      padding: 0 1rem;
+      box-shadow: 2px 1px 1px $color-primary-middle;
+      margin-left: 1rem;
+    }
+  }
+}

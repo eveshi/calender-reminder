@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Button from '../Button/Button';
+import * as utility from '../../utility/utility';
+import { CHANGE_SESSION } from '../../store/actions/index';
+
+import './TimePicker.css';
 
 class TimePicker extends PureComponent {
   state = {
@@ -11,23 +15,32 @@ class TimePicker extends PureComponent {
     minutePicked: '00',
   }
 
+  componentWillMount() {
+    const {
+      hourInit,
+      minuteInit,
+    } = this.props;
+
+    console.log(hourInit);
+    console.log(minuteInit);
+
+    this.setState({
+      hourPicked: hourInit,
+      minutePicked: minuteInit,
+    });
+  }
+
   componentDidMount() {
     const hourArray = [];
     const minuteArray = [];
 
     for (let i = 0; i < 24; i += 1) {
-      let hourString = i.toString();
-      if (i < 10) {
-        hourString = `0${i}`;
-      }
+      const hourString = utility.hourStringGenerator(i);
       hourArray.push(hourString);
     }
 
     for (let i = 0; i < 60; i += 1) {
-      let minuteString = i.toString();
-      if (i < 10) {
-        minuteString = `0${i}`;
-      }
+      const minuteString = utility.minuteStringGenerator(i);
       minuteArray.push(minuteString);
     }
 
@@ -38,6 +51,10 @@ class TimePicker extends PureComponent {
   }
 
   timeChangeHandler = (event, selector) => {
+    const {
+      changeSession,
+    } = this.props;
+
     const { value } = event.target;
     let {
       hourPicked,
@@ -57,13 +74,14 @@ class TimePicker extends PureComponent {
         minutePicked,
       });
     }
+
+    const timeIDString = `${hourPicked}${minutePicked}`;
+    const timeID = parseInt(timeIDString, 10);
+
+    changeSession(timeID);
   }
 
   render() {
-    const {
-      applyTime,
-    } = this.props;
-
     const {
       hourPicked,
       minutePicked,
@@ -75,7 +93,7 @@ class TimePicker extends PureComponent {
       timeChangeHandler,
     } = this;
 
-    const hourOptions = hourArray === null
+    const hourOptions = hourArray == null
       ? null
       : hourArray.map(hour => (
         <option
@@ -86,7 +104,7 @@ class TimePicker extends PureComponent {
         </option>
       ));
 
-    const minuteOptions = minuteArray === null
+    const minuteOptions = minuteArray == null
       ? null
       : minuteArray.map(minute => (
         <option
@@ -97,38 +115,44 @@ class TimePicker extends PureComponent {
         </option>
       ));
 
-    const timeIDString = `${hourPicked}${minutePicked}`;
-    const timeID = parseInt(timeIDString, 10);
-
     return (
-      <div>
-        <form>
-          <select
-            value={hourPicked}
-            onChange={event => timeChangeHandler(event, 'hour')}
-          >
-            {hourOptions}
-          </select>
-          <select
-            value={minutePicked}
-            onChange={event => timeChangeHandler(event, 'minute')}
-          >
-            {minuteOptions}
-          </select>
-        </form>
-        <Button
-          onClick={applyTime}
-          id={timeID}
+      <form className="TimePicker">
+        <select
+          className="TimePicker_select"
+          value={hourPicked}
+          onChange={event => timeChangeHandler(event, 'hour')}
+          name="hour"
         >
-          Apply
-        </Button>
-      </div>
+          {hourOptions}
+        </select>
+        <p className="TimePicker_select">:</p>
+        <select
+          className="TimePicker_select"
+          value={minutePicked}
+          onChange={event => timeChangeHandler(event, 'minute')}
+          name="minute"
+        >
+          {minuteOptions}
+        </select>
+      </form>
     );
   }
 }
 
 TimePicker.propTypes = {
-  applyTime: PropTypes.func.isRequired,
+  hourInit: PropTypes.string,
+  minuteInit: PropTypes.string,
+  changeSession: PropTypes.func.isRequired,
 };
 
-export default TimePicker;
+TimePicker.defaultProps = {
+  hourInit: '00',
+  minuteInit: '00',
+};
+
+const mapActionToProps = dispatch => ({
+  changeSession: time => dispatch(CHANGE_SESSION(null, time, null)),
+});
+
+
+export default connect(null, mapActionToProps)(TimePicker);

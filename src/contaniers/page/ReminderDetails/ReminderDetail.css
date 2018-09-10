@@ -1,0 +1,83 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 400px) {
+    html {
+      font-size: 50%; } }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F5F5F4; }
+
+a svg {
+  height: 4rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: #5F513F; }
+  a svg:hover {
+    background-color: transparent; }
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css?family=Roboto"); }
+
+.ReminderDetails {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #060505; }
+  .ReminderDetails_header {
+    width: 100%;
+    height: 15vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between; }
+    .ReminderDetails_header a {
+      border-radius: 50%;
+      background-color: #BD924B;
+      height: 5rem;
+      width: 5rem;
+      position: relative;
+      transition: all .2s ease; }
+      .ReminderDetails_header a svg {
+        position: absolute;
+        left: .5rem;
+        top: .5rem; }
+      .ReminderDetails_header a:hover {
+        transform: scale(0.98); }
+  .ReminderDetails_content {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #BD924B; }
+    .ReminderDetails_content > * {
+      margin-bottom: 4rem; }
+    .ReminderDetails_content_time {
+      font-size: 3.6rem;
+      color: #BD924B; }
+    .ReminderDetails_content_reminder {
+      width: 80%;
+      font-size: 2.4rem;
+      text-align: center;
+      word-wrap: break-word; }
+    .ReminderDetails_content .Button:hover {
+      background-color: transparent; }
+    .ReminderDetails_content .Button svg {
+      height: 4rem;
+      width: 4rem;
+      text-decoration: none;
+      fill: #BD924B; }
+      .ReminderDetails_content .Button svg:hover {
+        opacity: 0.7; }

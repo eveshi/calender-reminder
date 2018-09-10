@@ -1,0 +1,46 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 400px) {
+    html {
+      font-size: 50%; } }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F5F5F4; }
+
+a svg {
+  height: 4rem;
+  width: 4rem;
+  text-decoration: none;
+  fill: #5F513F; }
+  a svg:hover {
+    background-color: transparent; }
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  src: url("https://fonts.googleapis.com/css?family=Roboto"); }
+
+.Calender_CalenderCell__picked, .Calender_CalenderCell__notPicked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .Calender_CalenderCell__picked .Button, .Calender_CalenderCell__notPicked .Button {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem; }
+    @media only screen and (max-width: 400px) {
+      .Calender_CalenderCell__picked .Button, .Calender_CalenderCell__notPicked .Button {
+        margin: 1rem; } }
+
+.Calender_CalenderCell__picked .Button {
+  background-color: #060505;
+  transition: all .2s ease; }

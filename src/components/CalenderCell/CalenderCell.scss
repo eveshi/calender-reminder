@@ -1,0 +1,29 @@
+@import '../../stylesheets/main.scss';
+
+.Calender_CalenderCell {
+  &__picked,
+  &__notPicked {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    .Button {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
+      @include responsive(small-phone){
+        margin: 1rem;
+      }
+    }
+  }
+
+  &__picked {
+    .Button {
+      background-color: $color-primary-dark;
+      @include transitionSpeed(fast);
+    }
+  }
+}

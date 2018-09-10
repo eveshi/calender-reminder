@@ -7,21 +7,18 @@ export const POST_REMINDER = (date, time, reminder) => ({
   reminder,
 });
 
-export const GET_REMINDER = date => ({
-  type: actionTypes.GET_REMINDER,
-  date,
-});
-
-export const PUT_REMINDER = (date, id, time, reminder) => ({
-  type: actionTypes.PUT_REMINDER,
-  date,
-  id,
-  time,
-  reminder,
-});
-
 export const DELETE_REMINDER = (date, id) => ({
   type: actionTypes.DELETE_REMINDER,
   date,
+  id,
+});
+
+export const PUT_REMINDER = (preDate, nextDate, id, time, reminder) => (dispatch) => {
+  dispatch(DELETE_REMINDER(preDate, id));
+  dispatch(POST_REMINDER(nextDate, time, reminder));
+};
+
+export const GET_SINGLE_REMINDER = id => ({
+  type: actionTypes.GET_SINGLE_REMINDER,
   id,
 });

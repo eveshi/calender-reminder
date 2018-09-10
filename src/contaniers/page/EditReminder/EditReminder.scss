@@ -1,0 +1,73 @@
+@import '../../../stylesheets/main.scss';
+
+.EditReminder {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color-primary-dark;
+
+  &_header {
+    width: 100%;
+    height: 15vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      border-radius: 50%;
+      background-color: $color-secondary-dark;
+      height: 5rem;
+      width: 5rem;
+      position: relative;
+      @include transitionSpeed(fast);
+
+      .Button {
+        background-color: transparent;
+      }
+
+      svg {
+        position: absolute;
+        left: .5rem;
+        top: .5rem;
+      }
+
+      &:hover {
+        transform: scale(0.98);
+      }
+    }
+  }
+
+  &_form {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+      margin-bottom: 4rem;
+    }
+
+    select {
+      font-size: 3.6rem;
+      color: $color-secondary-dark;
+    }
+
+    &_input {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+
+      p {
+        color: $color-secondary-darker;
+        margin-top: 3px;
+        font-size: 1.8rem;
+        text-align: right;
+      }
+    }
+  }
+}

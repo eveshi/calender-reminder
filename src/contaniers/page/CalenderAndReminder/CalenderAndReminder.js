@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Calender from '../../../components/Calender/Calender';
 import Reminder from '../../../components/Reminder/Reminder';
-import Button from '../../../components/Button/Button';
 import DatePicker from '../../../components/DatePicker/DatePicker';
 
 import AddReminder from '../../../assets/icon/AddReminder';
 
 import { CHANGE_DAY } from '../../../store/actions/index';
+
+import './CalenderAndReminder.css';
 
 const CalenderAndReminder = (props) => {
   const {
@@ -16,6 +18,7 @@ const CalenderAndReminder = (props) => {
     month,
     day,
     changeDay,
+    reminders,
   } = props;
 
   const dayChangeHandler = (event) => {
@@ -24,13 +27,12 @@ const CalenderAndReminder = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        <DatePicker />
-        <DatePicker dayPickerDisabled={false} />
-        <Button>
+    <div className="CalenderAndReminder">
+      <div className="CalenderAndReminder_header">
+        <DatePicker applyButtonDisabled={false} />
+        <Link to="/edit_reminder">
           <AddReminder />
-        </Button>
+        </Link>
       </div>
       <Calender
         year={year}
@@ -38,7 +40,9 @@ const CalenderAndReminder = (props) => {
         day={day}
         onClick={event => dayChangeHandler(event)}
       />
-      <Reminder />
+      <Reminder
+        reminders={reminders}
+      />
     </div>
   );
 };
@@ -48,6 +52,11 @@ CalenderAndReminder.propTypes = {
   month: PropTypes.number.isRequired,
   day: PropTypes.number.isRequired,
   changeDay: PropTypes.func.isRequired,
+  reminders: PropTypes.arrayOf(PropTypes.object),
+};
+
+CalenderAndReminder.defaultProps = {
+  reminders: null,
 };
 
 const mapStateToProps = state => ({

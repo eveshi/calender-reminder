@@ -1,21 +1,19 @@
 @import '../../stylesheets/main.scss';
 
-.button {
-  border: 2px outset $color-secondary-dark;
-  height: 4rem;
-  border-radius: 1rem;
+.Button {
+  height: 6rem;
   padding: 1rem;
-  background-color: $color-primary-dark;
   color: $color-secondary-dark;
-  font-size: 1.4rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: bold;
+  outline: none;
   cursor: pointer;
   @include transitionSpeed(fast);
 
   &:hover {
-    transform: scale(0.97);
-    border: 2px inset #BD924B;
-    outline: none;
+    background-color: $color-primary-lighter;
   }
 }

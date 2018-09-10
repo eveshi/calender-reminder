@@ -10,3 +10,10 @@ export const CHANGE_YEAR_AND_MONTH = (year, month) => ({
   year,
   month,
 });
+
+export const CHANGE_SESSION = (date, time, reminder) => ({
+  type: actionTypes.CHANGE_SESSION,
+  date,
+  time,
+  reminder,
+});
