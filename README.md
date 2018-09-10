@@ -14,6 +14,9 @@ It is based on React.js + Redux, and React Router is used to handle pages.
 
 **This web-app is mainly designed for mobile users, although it is use responsive styling in some part, but still not very good looking in desktop computer.
 
-#### Further More
+#### To Do
 
-To the limited time, styling and testing are still have some work to improve.
+To the limited time, there are some things to improve.
+
+1. Test. Unit test and integration test will be compeleted if have enough time.
+2. Animation. More Css animation will be used.
