@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import ConnectedCalenderAndReminder from './page/CalenderAndReminder/CalenderAndReminder';
-import ConnectedEditReminder from './page/EditReminder/EditReminder';
-import ConnectedReminderDetails from './page/ReminderDetails/ReminderDetails';
+import ConnectedCalenderAndReminder from './pages/CalenderAndReminder/CalenderAndReminder';
+import ConnectedEditReminder from './pages/EditReminder/EditReminder';
+import ConnectedReminderDetails from './pages/ReminderDetails/ReminderDetails';
 import './App.css';
 
 class App extends PureComponent {

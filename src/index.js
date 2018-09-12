@@ -4,9 +4,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import reducer from './store/reducer/reducer';
+import reducer from './store/reducers/reducer';
 import App from './contaniers/App';
-import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
   reducer,
@@ -21,4 +20,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
-registerServiceWorker();

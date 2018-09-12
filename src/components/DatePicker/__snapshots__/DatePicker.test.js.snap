@@ -19,7 +19,7 @@ exports[`snapshot renders correctly 1`] = `
     <p
       className="DatePicker_date"
     >
-      July
+      Jul
     </p>
     <p
       className="DatePicker_date"
