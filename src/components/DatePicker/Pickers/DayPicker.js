@@ -12,7 +12,17 @@ const DayPicker = (props) => {
 
   const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearPicked, monthPicked, 1));
   const dayArray = [];
-  for (let i = 1; i < daysInMonthPicked + 1; i += 1) {
+
+  const currentYear = dateFns.getYear(new Date());
+  const currentMonth = dateFns.getMonth(new Date());
+  const currentDay = dateFns.getDate(new Date());
+
+  const dayInit = (currentYear === parseInt(yearPicked, 10)
+                    && currentMonth === parseInt(monthPicked, 10))
+    ? currentDay
+    : 1;
+
+  for (let i = dayInit; i < daysInMonthPicked + 1; i += 1) {
     dayArray.push(i);
   }
 

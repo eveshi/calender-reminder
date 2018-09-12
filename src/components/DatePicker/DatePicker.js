@@ -176,6 +176,7 @@ export class DatePicker extends PureComponent {
               onChange={event => dateChangeHandler(event, 'year')}
             />
             <MonthPicker
+              yearPicked={yearPicked}
               monthPicked={monthPicked}
               onChange={event => dateChangeHandler(event, 'month')}
             />
