@@ -13,7 +13,7 @@ export class DatePicker extends PureComponent {
   state = {
     yearArray: null,
     monthArray: null,
-    dayArray: null,
+    // dayArray: null,
     yearPicked: 0,
     monthPicked: 0,
     dayPicked: 0,
@@ -43,16 +43,16 @@ export class DatePicker extends PureComponent {
       monthArray.push(month);
     }
 
-    const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearInit, monthInit, 1));
-    const dayArray = [];
-    for (let i = 1; i < daysInMonthPicked + 1; i += 1) {
-      dayArray.push(i);
-    }
+    // const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearInit, monthInit, 1));
+    // const dayArray = [];
+    // for (let i = 1; i < daysInMonthPicked + 1; i += 1) {
+    //   dayArray.push(i);
+    // }
 
     this.setState({
       yearArray,
       monthArray,
-      dayArray,
+      // dayArray,
       yearPicked: yearInit,
       monthPicked: monthInit,
       dayPicked: dayInit,
@@ -132,7 +132,7 @@ export class DatePicker extends PureComponent {
     const {
       yearArray,
       monthArray,
-      dayArray,
+      // dayArray,
       yearPicked,
       monthPicked,
       dayPicked,
@@ -152,6 +152,12 @@ export class DatePicker extends PureComponent {
       dayPickerDisabled,
       applyButtonDisabled,
     } = this.props;
+
+    const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearPicked, monthPicked, 1));
+    const dayArray = [];
+    for (let i = 1; i < daysInMonthPicked + 1; i += 1) {
+      dayArray.push(i);
+    }
 
     const yearOptions = yearArray === null
       ? null
