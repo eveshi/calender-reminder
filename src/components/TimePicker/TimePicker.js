@@ -2,15 +2,15 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import * as utility from '../../utility/utility';
 import { CHANGE_SESSION } from '../../store/actions/index';
+
+import HourPicker from './Pickers/HourPicker';
+import MinutePicker from './Pickers/MinutePicker';
 
 import './TimePicker.css';
 
 export class TimePicker extends PureComponent {
   state = {
-    hourArray: null,
-    minuteArray: null,
     hourPicked: '00',
     minutePicked: '00',
   }
@@ -28,26 +28,6 @@ export class TimePicker extends PureComponent {
     this.setState({
       hourPicked: hourInit,
       minutePicked: minuteInit,
-    });
-  }
-
-  componentDidMount() {
-    const hourArray = [];
-    const minuteArray = [];
-
-    for (let i = 0; i < 24; i += 1) {
-      const hourString = utility.hourStringGenerator(i);
-      hourArray.push(hourString);
-    }
-
-    for (let i = 0; i < 60; i += 1) {
-      const minuteString = utility.minuteStringGenerator(i);
-      minuteArray.push(minuteString);
-    }
-
-    this.setState({
-      hourArray,
-      minuteArray,
     });
   }
 
@@ -86,55 +66,23 @@ export class TimePicker extends PureComponent {
     const {
       hourPicked,
       minutePicked,
-      hourArray,
-      minuteArray,
     } = this.state;
 
     const {
       timeChangeHandler,
     } = this;
 
-    const hourOptions = hourArray == null
-      ? null
-      : hourArray.map(hour => (
-        <option
-          key={hour}
-          value={hour}
-        >
-          {hour}
-        </option>
-      ));
-
-    const minuteOptions = minuteArray == null
-      ? null
-      : minuteArray.map(minute => (
-        <option
-          key={minute}
-          value={minute}
-        >
-          {minute}
-        </option>
-      ));
-
     return (
       <form className="TimePicker">
-        <select
-          className="TimePicker_select"
-          value={hourPicked}
+        <HourPicker
+          hourPicked={hourPicked}
           onChange={event => timeChangeHandler(event, 'hour')}
-          name="hour"
-        >
-          {hourOptions}
-        </select>
+        />
         <p className="TimePicker_select">:</p>
-        <select
-          className="TimePicker_select"
-          value={minutePicked}
+        <MinutePicker
+          minutePicked={minutePicked}
           onChange={event => timeChangeHandler(event, 'minute')}
-          name="minute"
-        >
-          {minuteOptions}
-        </select>
+        />
       </form>
     );
   }
