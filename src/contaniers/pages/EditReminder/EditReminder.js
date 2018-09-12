@@ -85,7 +85,7 @@ export class EditReminder extends PureComponent {
       : sessionDate;
 
     const time = sessionTime === null
-      ? 0
+      ? parseInt(`${hourInit}${minuteInit}`, 10)
       : sessionTime;
 
     if (preId === null) {
