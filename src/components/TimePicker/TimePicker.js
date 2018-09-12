@@ -21,6 +21,10 @@ export class TimePicker extends PureComponent {
       minuteInit,
     } = this.props;
 
+    if (hourInit == null) {
+      return;
+    }
+
     this.setState({
       hourPicked: hourInit,
       minutePicked: minuteInit,
