@@ -1,22 +1,22 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import dateFns from 'date-fns';
 
 import * as utility from '../../utility/utility';
 import Button from '../Button/Button';
 import * as actions from '../../store/actions';
 
+import YearPicker from './Pickers/YearPicker';
+import MonthPicker from './Pickers/MonthPicker';
+import DayPicker from './Pickers/DayPicker';
+
 import './DatePicker.css';
 
 export class DatePicker extends PureComponent {
   state = {
-    yearArray: null,
-    monthArray: null,
-    // dayArray: null,
-    yearPicked: 0,
-    monthPicked: 0,
-    dayPicked: 0,
+    yearPicked: '2018',
+    monthPicked: '0',
+    dayPicked: '1',
     datePickerDisabled: true,
   }
 
@@ -28,34 +28,10 @@ export class DatePicker extends PureComponent {
       datePickerDisabled,
     } = this.props;
 
-    const currentYear = dateFns.getYear(new Date());
-    const yearArray = [];
-    for (let i = currentYear; i < currentYear + 31; i += 1) {
-      yearArray.push(i);
-    }
-
-    const monthArray = [];
-    for (let i = 0; i < 12; i += 1) {
-      const month = {
-        index: i,
-        string: utility.monthStringGenerator(i),
-      };
-      monthArray.push(month);
-    }
-
-    // const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearInit, monthInit, 1));
-    // const dayArray = [];
-    // for (let i = 1; i < daysInMonthPicked + 1; i += 1) {
-    //   dayArray.push(i);
-    // }
-
     this.setState({
-      yearArray,
-      monthArray,
-      // dayArray,
-      yearPicked: yearInit,
-      monthPicked: monthInit,
-      dayPicked: dayInit,
+      yearPicked: `${yearInit}`,
+      monthPicked: `${monthInit}`,
+      dayPicked: `${dayInit}`,
       datePickerDisabled,
     });
   }
@@ -130,9 +106,6 @@ export class DatePicker extends PureComponent {
 
   render() {
     const {
-      yearArray,
-      monthArray,
-      // dayArray,
       yearPicked,
       monthPicked,
       dayPicked,
@@ -153,55 +126,15 @@ export class DatePicker extends PureComponent {
       applyButtonDisabled,
     } = this.props;
 
-    const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearPicked, monthPicked, 1));
-    const dayArray = [];
-    for (let i = 1; i < daysInMonthPicked + 1; i += 1) {
-      dayArray.push(i);
-    }
-
-    const yearOptions = yearArray === null
-      ? null
-      : yearArray.map(year => (
-        <option
-          key={year}
-          value={year}
-        >
-          {year}
-        </option>
-      ));
-
-    const monthOptions = monthArray === null
-      ? null
-      : monthArray.map(month => (
-        <option
-          key={month.index}
-          value={month.index}
-        >
-          {month.string}
-        </option>
-      ));
-
-    const dayOptions = dayArray === null
-      ? null
-      : dayArray.map(day => (
-        <option
-          key={day}
-          value={day}
-        >
-          {day}
-        </option>
-      ));
-
     const dayPicker = dayPickerDisabled === true
       ? null
       : (
-        <select
-          className="DatePicker_picker_select"
-          value={dayPicked}
+        <DayPicker
+          yearPicked={yearPicked}
+          monthPicked={monthPicked}
+          dayPicked={dayPicked}
           onChange={event => dateChangeHandler(event, 'day')}
-        >
-          {dayOptions}
-        </select>
+        />
       );
 
     const dayDisplay = dayPickerDisabled === true
@@ -220,7 +153,7 @@ export class DatePicker extends PureComponent {
         </Button>
       );
 
-    const monthPicker = datePickerDisabled === true
+    const dateDisplay = datePickerDisabled === true
       ? (
         <Button onClick={() => datePickerDisabledHandler()}>
           <p className="DatePicker_date">
@@ -238,20 +171,14 @@ export class DatePicker extends PureComponent {
       : (
         <div className="DatePicker_picker">
           <form>
-            <select
-              className="DatePicker_picker_select"
-              value={yearPicked}
+            <YearPicker
+              yearPicked={yearPicked}
               onChange={event => dateChangeHandler(event, 'year')}
-            >
-              {yearOptions}
-            </select>
-            <select
-              className="DatePicker_picker_select"
-              value={monthPicked}
+            />
+            <MonthPicker
+              monthPicked={monthPicked}
               onChange={event => dateChangeHandler(event, 'month')}
-            >
-              {monthOptions}
-            </select>
+            />
             {dayPicker}
           </form>
           {applyButtonDisplay}
@@ -260,7 +187,7 @@ export class DatePicker extends PureComponent {
 
     return (
       <div className="DatePicker">
-        {monthPicker}
+        {dateDisplay}
       </div>
     );
   }
