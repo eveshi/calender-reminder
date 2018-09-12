@@ -63,8 +63,6 @@ export class EditReminder extends PureComponent {
     const {
       reminder,
       preDate,
-      hourInit,
-      minuteInit,
     } = this.state;
 
     const {
@@ -87,7 +85,7 @@ export class EditReminder extends PureComponent {
       : sessionDate;
 
     const time = sessionTime === null
-      ? parseInt(`${hourInit}${minuteInit}`, 10)
+      ? 0
       : sessionTime;
 
     if (preId === null) {
