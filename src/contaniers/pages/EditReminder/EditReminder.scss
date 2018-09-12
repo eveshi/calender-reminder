@@ -16,28 +16,7 @@
     display: flex;
     justify-content: space-between;
 
-    a {
-      border-radius: 50%;
-      background-color: $color-secondary-dark;
-      height: 5rem;
-      width: 5rem;
-      position: relative;
-      @include transitionSpeed(fast);
-
-      .Button {
-        background-color: transparent;
-      }
-
-      svg {
-        position: absolute;
-        left: .5rem;
-        top: .5rem;
-      }
-
-      &:hover {
-        transform: scale(0.98);
-      }
-    }
+    @include link_button
   }
 
   &_form {

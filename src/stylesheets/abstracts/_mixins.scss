@@ -1,3 +1,5 @@
+@import './variables';
+
 // for responsive design:
 // phone size: < 600px
 // tablet horizon size: 600 ~ 900px
@@ -45,5 +47,31 @@
 
   @if ($speed == 'middle') {
     transition: all .5s ease;
+  }
+}
+
+// <a><button /></a>
+@mixin link_button {
+  a {
+    border-radius: 50%;
+    background-color: $color-secondary-dark;
+    height: 5rem;
+    width: 5rem;
+    position: relative;
+    @include transitionSpeed(fast);
+
+    .Button {
+      background-color: transparent;
+    }
+
+    svg {
+      position: absolute;
+      left: .5rem;
+      top: .5rem;
+    }
+
+    &:hover {
+      transform: scale(0.98);
+    }
   }
 }

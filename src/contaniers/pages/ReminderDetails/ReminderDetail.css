@@ -48,6 +48,8 @@ a svg {
       width: 5rem;
       position: relative;
       transition: all .2s ease; }
+      .ReminderDetails_header a .Button {
+        background-color: transparent; }
       .ReminderDetails_header a svg {
         position: absolute;
         left: .5rem;
