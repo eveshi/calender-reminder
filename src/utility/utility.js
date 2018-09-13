@@ -72,7 +72,7 @@ export const minuteFiveGenerator = () => {
     (currentMinuteDivideFive % 5) !== 0;
     currentMinuteDivideFive += 1);
 
-  return currentMinuteDivideFive;
+  return minuteStringGenerator(currentMinuteDivideFive);
 };
 
 export const timeIDGenerator = (hour, minute) => {
