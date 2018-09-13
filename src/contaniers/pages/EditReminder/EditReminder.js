@@ -214,7 +214,7 @@ const mapStateToProps = state => ({
 const mapActionToProps = dispatch => ({
   postReminder: (date, time, reminder) => dispatch(actions.postReminder(date, time, reminder)),
   putReminder: (preDate, nextDate, id, time, reminder) => dispatch(
-    actions.postReminder(preDate, nextDate, id, time, reminder),
+    actions.putReminder(preDate, nextDate, id, time, reminder),
   ),
   changeSessionReminder: reminder => dispatch(actions.changeSessionReminder(reminder)),
 });
