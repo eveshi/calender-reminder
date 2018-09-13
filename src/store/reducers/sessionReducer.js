@@ -35,6 +35,19 @@ const changeSessionReminder = (state, action) => {
   return updateObject(state, valueToChange);
 };
 
+const cleanSession = (state) => {
+  const valueToChange = {
+    time: null,
+    reminder: {
+      id: null,
+      time: null,
+      reminder: null,
+    },
+  };
+
+  return updateObject(state, valueToChange);
+};
+
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CHANGE_SESSION_DATE:
@@ -43,6 +56,8 @@ const sessionReducer = (state = initialState, action) => {
       return changeSessionTime(state, action);
     case actionTypes.CHANGE_SESSION_REMINDER:
       return changeSessionReminder(state, action);
+    case actionTypes.CLEAN_SESSION:
+      return cleanSession(state);
     default:
       return state;
   }

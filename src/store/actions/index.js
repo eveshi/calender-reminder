@@ -13,4 +13,5 @@ export {
   changeSessionDate,
   changeSessionTime,
   changeSessionReminder,
+  cleanSession,
 } from './session';

@@ -13,11 +13,16 @@ const MinutePicker = (props) => {
 
   const currentHour = dateFns.getHours(new Date());
 
-  const minuteInit = (datePicked <= utility.formatCurrentDate
-                      && (currentHour === parseInt(hourPicked, 10)
-                      || hourPicked === '00'))
-    ? utility.minuteFiveGenerator()
-    : 0;
+  const getMinuteInit = () => {
+    if (datePicked > utility.formatCurrentDate) return 0;
+
+    if (currentHour === parseInt(hourPicked, 10)) return utility.minuteFiveGenerator();
+    if (hourPicked === '00') return utility.minuteFiveGenerator();
+
+    return 0;
+  };
+
+  const minuteInit = getMinuteInit();
 
   const minuteArray = [];
   for (let i = minuteInit; i < 60; i += 5) {

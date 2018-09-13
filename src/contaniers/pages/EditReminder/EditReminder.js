@@ -59,18 +59,6 @@ export class EditReminder extends PureComponent {
     });
   }
 
-  cleanSession = () => {
-    const {
-      changeSessionReminder,
-    } = this.props;
-    const reminder = {
-      id: null,
-      time: null,
-      reminder: null,
-    };
-    changeSessionReminder(reminder);
-  }
-
   submitReminder = () => {
     const {
       reminder,
@@ -78,15 +66,12 @@ export class EditReminder extends PureComponent {
     } = this.state;
 
     const {
-      cleanSession,
-    } = this;
-
-    const {
       sessionDate,
       sessionTime,
       preId,
       postReminder,
       putReminder,
+      cleanSession,
     } = this.props;
 
     const date = (sessionDate === null || dateFns.isPast(sessionDate))
@@ -189,7 +174,7 @@ EditReminder.propTypes = {
   sessionTime: PropTypes.number,
   postReminder: PropTypes.func.isRequired,
   putReminder: PropTypes.func.isRequired,
-  changeSessionReminder: PropTypes.func.isRequired,
+  cleanSession: PropTypes.func.isRequired,
 };
 
 EditReminder.defaultProps = {
@@ -216,7 +201,7 @@ const mapActionToProps = dispatch => ({
   putReminder: (preDate, nextDate, id, time, reminder) => dispatch(
     actions.putReminder(preDate, nextDate, id, time, reminder),
   ),
-  changeSessionReminder: reminder => dispatch(actions.changeSessionReminder(reminder)),
+  cleanSession: () => dispatch(actions.cleanSession()),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(EditReminder);

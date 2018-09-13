@@ -14,3 +14,7 @@ export const changeSessionReminder = reminder => ({
   type: actionTypes.CHANGE_SESSION_REMINDER,
   reminder,
 });
+
+export const cleanSession = () => ({
+  type: actionTypes.CLEAN_SESSION,
+});

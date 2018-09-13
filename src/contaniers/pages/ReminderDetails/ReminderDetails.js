@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { timeStringGenerator, monthStringGenerator } from '../../../utility/utility';
 import Button from '../../../components/Button/Button';
-import { deleteReminder, changeSessionReminder } from '../../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 import Close from '../../../assets/icon/Close';
 import Edit from '../../../assets/icon/Edit';
@@ -15,18 +15,6 @@ import Delete from '../../../assets/icon/Delete';
 import './ReminderDetail.css';
 
 export class ReminderDetails extends PureComponent {
-  cleanSession = () => {
-    const {
-      changeSessionReminderHandler,
-    } = this.props;
-    const reminder = {
-      id: null,
-      time: null,
-      reminder: null,
-    };
-    changeSessionReminderHandler(reminder);
-  }
-
   deleteReminderHandler = () => {
     const {
       year,
@@ -34,11 +22,8 @@ export class ReminderDetails extends PureComponent {
       day,
       id,
       deleteReminderHandler,
-    } = this.props;
-
-    const {
       cleanSession,
-    } = this;
+    } = this.props;
 
     const date = dateFns.format(new Date(year, month, day), 'YYYYMMDD');
 
@@ -107,7 +92,7 @@ ReminderDetails.propTypes = {
   time: PropTypes.number.isRequired,
   reminder: PropTypes.string.isRequired,
   deleteReminderHandler: PropTypes.func.isRequired,
-  changeSessionReminderHandler: PropTypes.func.isRequired,
+  cleanSession: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -120,8 +105,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  deleteReminderHandler: (date, id) => dispatch(deleteReminder(date, id)),
-  changeSessionReminderHandler: reminder => dispatch(changeSessionReminder(reminder)),
+  deleteReminderHandler: (date, id) => dispatch(actions.deleteReminder(date, id)),
+  cleanSession: () => dispatch(actions.cleanSession()),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(ReminderDetails);
