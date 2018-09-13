@@ -13,7 +13,7 @@ const props = {
   day: 18,
   postReminder: jest.fn(),
   putReminder: jest.fn(),
-  changeSession: jest.fn(),
+  changeSessionReminder: jest.fn(),
 };
 
 jest.mock('../../../components/DatePicker/DatePicker.js', () => () => (

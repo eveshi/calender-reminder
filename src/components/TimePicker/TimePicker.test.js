@@ -7,7 +7,8 @@ import { TimePicker } from './TimePicker';
 configure({ adapter: new Adapter() });
 
 const props = {
-  changeSession: jest.fn(),
+  datePicked: '20180930',
+  changeSessionTimeHandler: jest.fn(),
 };
 
 describe('snapshot', () => {

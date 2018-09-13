@@ -14,8 +14,8 @@ const props = {
   id: '12345678',
   time: 1200,
   reminder: 'abcdefg',
-  deleteReminder: jest.fn(),
-  changeSession: jest.fn(),
+  deleteReminderHandler: jest.fn(),
+  changeSessionReminderHandler: jest.fn(),
 };
 
 describe('snapshot', () => {

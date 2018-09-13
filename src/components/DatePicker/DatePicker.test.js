@@ -12,7 +12,7 @@ const props = {
   dayInit: 28,
   changeDay: jest.fn(),
   changeYearAndMonth: jest.fn(),
-  changeSession: jest.fn(),
+  changeSessionDate: jest.fn(),
 };
 
 describe('snapshot', () => {

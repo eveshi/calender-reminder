@@ -105,7 +105,7 @@ TimePicker.propTypes = {
 };
 
 TimePicker.defaultProps = {
-  hourInit: dateFns.getHours(new Date()),
+  hourInit: `${dateFns.getHours(new Date())}`,
   minuteInit: '00',
 };
 

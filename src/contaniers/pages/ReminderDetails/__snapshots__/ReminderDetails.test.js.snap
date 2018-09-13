@@ -65,9 +65,9 @@ exports[`snapshot renders correctly 1`] = `
       className="ReminderDetails_content_time"
     >
       2033
-      -
-      7
-      -
+       - 
+      Aug
+       - 
       18
     </p>
     <p

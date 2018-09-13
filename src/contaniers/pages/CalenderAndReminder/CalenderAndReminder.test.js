@@ -11,7 +11,8 @@ const props = {
   year: 2022,
   month: 3,
   day: 18,
-  changeDay: jest.fn(),
+  changeDayHandler: jest.fn(),
+  changeSessionDateHandler: jest.fn(),
   reminders: [],
 };
 
