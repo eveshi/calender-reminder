@@ -18,6 +18,8 @@
   .Button {
     border-bottom: 2px dotted;
     padding-bottom: 0px;
+    text-transform: none;
+    font-weight: 400;
 
     a {
       display: flex;
@@ -31,6 +33,17 @@
 
   &_ReminderCell_timeString {
     margin-right: 2rem;
+    position: relative;
+
+    &::after {
+      content: "";
+      height: 2rem;
+      width: 3px;
+      border-radius: 2px;
+      background-color: $color-secondary-dark;
+      position: absolute;
+      right: -1rem;
+    }
   }
 
   &_ReminderCell_reminder {

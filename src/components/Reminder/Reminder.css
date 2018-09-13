@@ -41,7 +41,9 @@ a svg {
     text-shadow: 1px 1px 0.5px #A5A4A2; }
   .Reminder .Button {
     border-bottom: 2px dotted;
-    padding-bottom: 0px; }
+    padding-bottom: 0px;
+    text-transform: none;
+    font-weight: 400; }
     .Reminder .Button a {
       display: flex;
       flex-direction: row;
@@ -50,7 +52,16 @@ a svg {
       text-decoration: none;
       color: #060505; }
   .Reminder_ReminderCell_timeString {
-    margin-right: 2rem; }
+    margin-right: 2rem;
+    position: relative; }
+    .Reminder_ReminderCell_timeString::after {
+      content: "";
+      height: 2rem;
+      width: 3px;
+      border-radius: 2px;
+      background-color: #BD924B;
+      position: absolute;
+      right: -1rem; }
   .Reminder_ReminderCell_reminder {
     width: auto;
     overflow: hidden;
