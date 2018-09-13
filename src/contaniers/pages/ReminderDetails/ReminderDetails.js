@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import dateFns from 'date-fns';
 import { Link } from 'react-router-dom';
 
-import { timeStringGenerator } from '../../../utility/utility';
+import { timeStringGenerator, monthStringGenerator } from '../../../utility/utility';
 import Button from '../../../components/Button/Button';
 import { deleteReminder, changeSessionReminder } from '../../../store/actions/index';
 
@@ -77,9 +77,9 @@ export class ReminderDetails extends PureComponent {
         <div className="ReminderDetails_content">
           <p className="ReminderDetails_content_time">
             {year}
-            -
-            {month}
-            -
+            &nbsp;-&nbsp;
+            {monthStringGenerator(month)}
+            &nbsp;-&nbsp;
             {day}
           </p>
           <p className="ReminderDetails_content_time">

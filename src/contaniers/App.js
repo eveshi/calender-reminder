@@ -1,46 +1,21 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ConnectedCalenderAndReminder from './pages/CalenderAndReminder/CalenderAndReminder';
 import ConnectedEditReminder from './pages/EditReminder/EditReminder';
 import ConnectedReminderDetails from './pages/ReminderDetails/ReminderDetails';
+import ErrorBoundary from '../HOC/ErrorBoundary';
 import './App.css';
 
-class App extends PureComponent {
-  state = {
-    hasError: false,
-    errorInfo: null,
-  }
-
-  componentDidCatch(error, info) {
-    this.setState({
-      hasError: true,
-      errorInfo: info,
-    });
-  }
-
-  render() {
-    const {
-      hasError,
-      errorInfo,
-    } = this.state;
-    const display = hasError === true
-      ? <h1>{errorInfo.componentStack}</h1>
-      : (
-        <BrowserRouter>
-          <div className="layout">
-            <Route exact path="/" component={ConnectedCalenderAndReminder} />
-            <Route path="/edit_reminder" component={ConnectedEditReminder} />
-            <Route path="/reminder_details" component={ConnectedReminderDetails} />
-          </div>
-        </BrowserRouter>
-      );
-
-    return (
-      <div>
-        {display}
+const App = () => (
+  <ErrorBoundary>
+    <BrowserRouter>
+      <div className="layout">
+        <Route exact path="/" component={ConnectedCalenderAndReminder} />
+        <Route path="/edit_reminder" component={ConnectedEditReminder} />
+        <Route path="/reminder_details" component={ConnectedReminderDetails} />
       </div>
-    );
-  }
-}
+    </BrowserRouter>
+  </ErrorBoundary>
+);
 
 export default App;
