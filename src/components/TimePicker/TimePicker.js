@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import dateFns from 'date-fns';
 
 import { CHANGE_SESSION } from '../../store/actions/index';
+import { hourStringGenerator } from '../../utility/utility';
 
 import HourPicker from './Pickers/HourPicker';
 import MinutePicker from './Pickers/MinutePicker';
@@ -15,14 +17,15 @@ export class TimePicker extends PureComponent {
     minutePicked: '00',
   }
 
-  componentWillMount() {
-    const {
+  componentDidMount() {
+    let {
       hourInit,
       minuteInit,
     } = this.props;
 
     if (hourInit == null) {
-      return;
+      hourInit = hourStringGenerator(dateFns.getHours(new Date()));
+      minuteInit = '00';
     }
 
     this.setState({
@@ -72,14 +75,21 @@ export class TimePicker extends PureComponent {
       timeChangeHandler,
     } = this;
 
+    const {
+      datePicked,
+    } = this.props;
+
     return (
       <form className="TimePicker">
         <HourPicker
+          datePicked={datePicked}
           hourPicked={hourPicked}
           onChange={event => timeChangeHandler(event, 'hour')}
         />
         <p className="TimePicker_select">:</p>
         <MinutePicker
+          datePicked={datePicked}
+          hourPicked={hourPicked}
           minutePicked={minutePicked}
           onChange={event => timeChangeHandler(event, 'minute')}
         />
@@ -91,11 +101,12 @@ export class TimePicker extends PureComponent {
 TimePicker.propTypes = {
   hourInit: PropTypes.string,
   minuteInit: PropTypes.string,
+  datePicked: PropTypes.string.isRequired,
   changeSession: PropTypes.func.isRequired,
 };
 
 TimePicker.defaultProps = {
-  hourInit: '00',
+  hourInit: dateFns.getHours(new Date()),
   minuteInit: '00',
 };
 

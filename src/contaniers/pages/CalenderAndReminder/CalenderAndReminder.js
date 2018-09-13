@@ -8,7 +8,8 @@ import ConnectedDatePicker from '../../../components/DatePicker/DatePicker';
 
 import AddReminder from '../../../assets/icon/AddReminder';
 
-import { CHANGE_DAY } from '../../../store/actions/index';
+import { CHANGE_DAY, CHANGE_SESSION } from '../../../store/actions/index';
+import { dateStringGenerator } from '../../../utility/utility';
 
 import './CalenderAndReminder.css';
 
@@ -19,11 +20,14 @@ export const CalenderAndReminder = (props) => {
     day,
     changeDay,
     reminders,
+    changeSession,
   } = props;
 
   const dayChangeHandler = (event) => {
     const { id } = event.target;
     changeDay(parseInt(id, 10));
+    const date = dateStringGenerator(year, month, id);
+    changeSession(date);
   };
 
   return (
@@ -53,6 +57,7 @@ CalenderAndReminder.propTypes = {
   day: PropTypes.number.isRequired,
   changeDay: PropTypes.func.isRequired,
   reminders: PropTypes.arrayOf(PropTypes.object),
+  changeSession: PropTypes.func.isRequired,
 };
 
 CalenderAndReminder.defaultProps = {
@@ -68,6 +73,7 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = dispatch => ({
   changeDay: day => dispatch(CHANGE_DAY(day)),
+  changeSession: date => dispatch(CHANGE_SESSION(date, null, null)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(CalenderAndReminder);

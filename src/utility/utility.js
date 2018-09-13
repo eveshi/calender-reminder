@@ -60,3 +60,5 @@ export const timeStringGenerator = (time) => {
 export const dateStringGenerator = (year, month, day) => (
   dateFns.format(new Date(year, month, day), 'YYYYMMDD')
 );
+
+export const formatCurrentDate = dateFns.format(new Date(), 'YYYYMMDD');

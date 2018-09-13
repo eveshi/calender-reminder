@@ -6,10 +6,11 @@ const currentDate = new Date();
 const currentYear = dateFns.getYear(currentDate);
 const currentMonth = dateFns.getMonth(currentDate);
 const currentDay = dateFns.getDate(currentDate);
+const currentDateFormat = dateFns.format(currentDate, 'YYYYMMDD');
 
 const initialState = {
   session: {
-    date: null,
+    date: currentDateFormat,
     time: null,
     reminder: {
       id: null,

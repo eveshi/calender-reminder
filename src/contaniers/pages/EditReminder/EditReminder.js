@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import dateFns from 'date-fns';
 
 import ConnectedDatePicker from '../../../components/DatePicker/DatePicker';
 import ConnectedTimePicker from '../../../components/TimePicker/TimePicker';
@@ -20,6 +21,7 @@ export class EditReminder extends PureComponent {
   state = {
     reminder: '',
     preDate: null,
+    datePicked: utility.formatCurrentDate,
   }
 
   componentDidMount() {
@@ -28,7 +30,12 @@ export class EditReminder extends PureComponent {
       year,
       month,
       day,
+      sessionDate,
     } = this.props;
+
+    const datePicked = sessionDate === null
+      ? utility.dateStringGenerator(year, month, day)
+      : sessionDate;
 
     if (preReminder !== null) {
       const preDate = utility.dateStringGenerator(year, month, day);
@@ -36,6 +43,11 @@ export class EditReminder extends PureComponent {
       this.setState({
         reminder: preReminder,
         preDate,
+        datePicked,
+      });
+    } else {
+      this.setState({
+        datePicked,
       });
     }
   }
@@ -72,16 +84,13 @@ export class EditReminder extends PureComponent {
     const {
       sessionDate,
       sessionTime,
-      year,
-      month,
-      day,
       preId,
       postReminder,
       putReminder,
     } = this.props;
 
-    const date = sessionDate === null
-      ? utility.dateStringGenerator(year, month, day)
+    const date = (sessionDate === null || dateFns.isPast(sessionDate))
+      ? utility.formatCurrentDate
       : sessionDate;
 
     const time = sessionTime === null
@@ -102,13 +111,19 @@ export class EditReminder extends PureComponent {
       preTime,
     } = this.props;
 
-    const hour = parseInt(preTime / 100, 10);
-    const minute = preTime % 100;
-    const hourString = utility.hourStringGenerator(hour);
-    const minuteString = utility.minuteStringGenerator(minute);
+    let hourString = null;
+    let minuteString = null;
+
+    if (preTime) {
+      const hour = parseInt(preTime / 100, 10);
+      const minute = preTime % 100;
+      hourString = utility.hourStringGenerator(hour);
+      minuteString = utility.minuteStringGenerator(minute);
+    }
 
     const {
       reminder,
+      datePicked,
     } = this.state;
 
     const {
@@ -139,6 +154,7 @@ export class EditReminder extends PureComponent {
           <ConnectedTimePicker
             hourInit={hourString}
             minuteInit={minuteString}
+            datePicked={datePicked}
           />
           <div className="EditReminder_form_input">
             <Input
