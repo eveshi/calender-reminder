@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start-js": "node scripts/start.js",
-    "start": "npm run watch-css && npm run start-js",
+    "start": "npm-run-all -p watch-css start-js",
     "build-js": "node scripts/build.js",
     "build": "npm run build-css && npm run build-js",
     "test": "node scripts/test.js --env=jsdom",
@@ -52,7 +52,7 @@
       "react-app"
     ]
   },
-  "devDependencies": {
+  "Dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",

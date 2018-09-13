@@ -38,11 +38,11 @@ export class ReminderDetails extends PureComponent {
       day,
       time,
       reminder,
+      cleanSession,
     } = this.props;
 
     const {
       deleteReminderHandler,
-      cleanSession,
     } = this;
 
     const timeString = timeStringGenerator(time);

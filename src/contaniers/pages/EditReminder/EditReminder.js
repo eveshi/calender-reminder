@@ -98,7 +98,18 @@ export class EditReminder extends PureComponent {
   render() {
     const {
       preTime,
+      cleanSession,
     } = this.props;
+
+    const {
+      reminder,
+      datePicked,
+    } = this.state;
+
+    const {
+      reminderChangeHandler,
+      submitReminder,
+    } = this;
 
     let hourString = null;
     let minuteString = null;
@@ -109,17 +120,6 @@ export class EditReminder extends PureComponent {
       hourString = utility.hourStringGenerator(hour);
       minuteString = utility.minuteStringGenerator(minute);
     }
-
-    const {
-      reminder,
-      datePicked,
-    } = this.state;
-
-    const {
-      reminderChangeHandler,
-      submitReminder,
-      cleanSession,
-    } = this;
 
     return (
       <div className="EditReminder">
