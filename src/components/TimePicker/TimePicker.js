@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import dateFns from 'date-fns';
 
 import { changeSessionTime } from '../../store/actions/index';
-import { hourStringGenerator, timeIDGenerator } from '../../utility/utility';
+import { timeIDGenerator } from '../../utility/utility';
 
 import HourPicker from './Pickers/HourPicker';
 import MinutePicker from './Pickers/MinutePicker';
@@ -18,14 +17,13 @@ export class TimePicker extends PureComponent {
   }
 
   componentDidMount() {
-    let {
+    const {
       hourInit,
       minuteInit,
     } = this.props;
 
     if (hourInit == null) {
-      hourInit = hourStringGenerator(dateFns.getHours(new Date()));
-      minuteInit = '00';
+      return;
     }
 
     this.setState({
@@ -105,7 +103,7 @@ TimePicker.propTypes = {
 };
 
 TimePicker.defaultProps = {
-  hourInit: `${dateFns.getHours(new Date())}`,
+  hourInit: '00',
   minuteInit: '00',
 };
 
