@@ -93,8 +93,12 @@ export class EditReminder extends PureComponent {
       ? utility.formatCurrentDate
       : sessionDate;
 
+    const defaultTime = dateFns.isPast(sessionDate)
+      ? utility.timeIDGenerator(dateFns.getHours(new Date()), utility.minuteFiveGenerator())
+      : 0;
+
     const time = sessionTime === null
-      ? 0
+      ? defaultTime
       : sessionTime;
 
     if (preId === null) {

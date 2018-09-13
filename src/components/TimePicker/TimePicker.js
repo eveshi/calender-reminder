@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
 import { CHANGE_SESSION } from '../../store/actions/index';
-import { hourStringGenerator } from '../../utility/utility';
+import { hourStringGenerator, timeIDGenerator } from '../../utility/utility';
 
 import HourPicker from './Pickers/HourPicker';
 import MinutePicker from './Pickers/MinutePicker';
@@ -59,8 +59,7 @@ export class TimePicker extends PureComponent {
       });
     }
 
-    const timeIDString = `${hourPicked}${minutePicked}`;
-    const timeID = parseInt(timeIDString, 10);
+    const timeID = timeIDGenerator(hourPicked, minutePicked);
 
     changeSession(timeID);
   }

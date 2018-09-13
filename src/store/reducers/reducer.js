@@ -2,15 +2,16 @@ import dateFns from 'date-fns';
 import * as actionTypes from '../actions/actionTypes';
 import updateObject from '../utility';
 
+// import { formatCurrentDate } from '../../utility/utility';
+
 const currentDate = new Date();
 const currentYear = dateFns.getYear(currentDate);
 const currentMonth = dateFns.getMonth(currentDate);
 const currentDay = dateFns.getDate(currentDate);
-const currentDateFormat = dateFns.format(currentDate, 'YYYYMMDD');
 
 const initialState = {
   session: {
-    date: currentDateFormat,
+    date: null,
     time: null,
     reminder: {
       id: null,

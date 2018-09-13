@@ -62,3 +62,20 @@ export const dateStringGenerator = (year, month, day) => (
 );
 
 export const formatCurrentDate = dateFns.format(new Date(), 'YYYYMMDD');
+
+export const minuteFiveGenerator = () => {
+  const currentMinute = dateFns.getMinutes(new Date());
+
+  let currentMinuteDivideFive = currentMinute;
+
+  for (currentMinuteDivideFive;
+    (currentMinuteDivideFive % 5) !== 0;
+    currentMinuteDivideFive += 1);
+
+  return currentMinuteDivideFive;
+};
+
+export const timeIDGenerator = (hour, minute) => {
+  const timeIDString = `${hour}${minute}`;
+  return parseInt(timeIDString, 10);
+};

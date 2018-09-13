@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
-import { minuteStringGenerator, formatCurrentDate } from '../../../utility/utility';
+import * as utility from '../../../utility/utility';
 
 const MinutePicker = (props) => {
   const {
@@ -12,22 +12,15 @@ const MinutePicker = (props) => {
   } = props;
 
   const currentHour = dateFns.getHours(new Date());
-  const currentMinute = dateFns.getMinutes(new Date());
 
-  let currentMinuteDivideFive = currentMinute;
-
-  for (currentMinuteDivideFive;
-    (currentMinuteDivideFive % 5) !== 0;
-    currentMinuteDivideFive += 1);
-
-  const minuteInit = (datePicked <= formatCurrentDate
+  const minuteInit = (datePicked <= utility.formatCurrentDate
                       && currentHour === parseInt(hourPicked, 10))
-    ? currentMinuteDivideFive
+    ? utility.minuteFiveGenerator()
     : 0;
 
   const minuteArray = [];
   for (let i = minuteInit; i < 60; i += 5) {
-    const minuteString = minuteStringGenerator(i);
+    const minuteString = utility.minuteStringGenerator(i);
     minuteArray.push(minuteString);
   }
 
