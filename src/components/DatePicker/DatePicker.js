@@ -38,7 +38,7 @@ export class DatePicker extends PureComponent {
 
   dateChangeHandler = (event, selector) => {
     const {
-      changeSession,
+      changeSessionDate,
     } = this.props;
 
     const { value } = event.target;
@@ -71,7 +71,7 @@ export class DatePicker extends PureComponent {
 
     const date = utility.dateStringGenerator(yearPicked, monthPicked, dayPicked);
 
-    changeSession(date);
+    changeSessionDate(date);
   }
 
   datePickerDisabledHandler = () => {
@@ -203,7 +203,7 @@ DatePicker.propTypes = {
   datePickerDisabled: PropTypes.bool,
   dayPickerDisabled: PropTypes.bool,
   applyButtonDisabled: PropTypes.bool,
-  changeSession: PropTypes.func.isRequired,
+  changeSessionDate: PropTypes.func.isRequired,
 };
 
 DatePicker.defaultProps = {
@@ -213,15 +213,15 @@ DatePicker.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  yearInit: state.date.year,
-  monthInit: state.date.month,
-  dayInit: state.date.day,
+  yearInit: state.reminderState.date.year,
+  monthInit: state.reminderState.date.month,
+  dayInit: state.reminderState.date.day,
 });
 
 const mapActionToProps = dispatch => ({
-  changeDay: day => dispatch(actions.CHANGE_DAY(day)),
-  changeYearAndMonth: (year, month) => dispatch(actions.CHANGE_YEAR_AND_MONTH(year, month)),
-  changeSession: date => dispatch(actions.CHANGE_SESSION(date, null, null)),
+  changeDay: day => dispatch(actions.changeDay(day)),
+  changeYearAndMonth: (year, month) => dispatch(actions.changeYearAndMonth(year, month)),
+  changeSessionDate: date => dispatch(actions.changeSessionDate(date)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(DatePicker);

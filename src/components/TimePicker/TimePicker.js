@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
-import { CHANGE_SESSION } from '../../store/actions/index';
+import { changeSessionTime } from '../../store/actions/index';
 import { hourStringGenerator, timeIDGenerator } from '../../utility/utility';
 
 import HourPicker from './Pickers/HourPicker';
@@ -36,7 +36,7 @@ export class TimePicker extends PureComponent {
 
   timeChangeHandler = (event, selector) => {
     const {
-      changeSession,
+      changeSessionTimeHandler,
     } = this.props;
 
     const { value } = event.target;
@@ -61,7 +61,7 @@ export class TimePicker extends PureComponent {
 
     const timeID = timeIDGenerator(hourPicked, minutePicked);
 
-    changeSession(timeID);
+    changeSessionTimeHandler(timeID);
   }
 
   render() {
@@ -101,7 +101,7 @@ TimePicker.propTypes = {
   hourInit: PropTypes.string,
   minuteInit: PropTypes.string,
   datePicked: PropTypes.string.isRequired,
-  changeSession: PropTypes.func.isRequired,
+  changeSessionTimeHandler: PropTypes.func.isRequired,
 };
 
 TimePicker.defaultProps = {
@@ -110,7 +110,7 @@ TimePicker.defaultProps = {
 };
 
 const mapActionToProps = dispatch => ({
-  changeSession: time => dispatch(CHANGE_SESSION(null, time, null)),
+  changeSessionTimeHandler: time => dispatch(changeSessionTime(time)),
 });
 
 

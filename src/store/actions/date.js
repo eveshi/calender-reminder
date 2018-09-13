@@ -1,18 +1,18 @@
 import * as actionTypes from './actionTypes';
 
-export const CHANGE_DAY = day => ({
+export const changeDay = day => ({
   type: actionTypes.CHANGE_DAY,
   day,
 });
 
-export const CHANGE_YEAR_AND_MONTH = (year, month) => ({
+export const changeYearAndMonth = (year, month) => ({
   type: actionTypes.CHANGE_YEAR_AND_MONTH,
   year,
   month,
 });
 
-export const CHANGE_SESSION = (date, time, reminder) => ({
-  type: actionTypes.CHANGE_SESSION,
+export const changeSessionReminder = (date, time, reminder) => ({
+  type: actionTypes.CHANGE_SESSION_REMINDER,
   date,
   time,
   reminder,

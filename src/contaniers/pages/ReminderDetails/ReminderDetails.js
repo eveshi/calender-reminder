@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { timeStringGenerator } from '../../../utility/utility';
 import Button from '../../../components/Button/Button';
-import { DELETE_REMINDER, CHANGE_SESSION } from '../../../store/actions/index';
+import { deleteReminder, changeSessionReminder } from '../../../store/actions/index';
 
 import Close from '../../../assets/icon/Close';
 import Edit from '../../../assets/icon/Edit';
@@ -17,14 +17,14 @@ import './ReminderDetail.css';
 export class ReminderDetails extends PureComponent {
   cleanSession = () => {
     const {
-      changeSession,
+      changeSessionReminderHandler,
     } = this.props;
     const reminder = {
       id: null,
       time: null,
       reminder: null,
     };
-    changeSession(null, null, reminder);
+    changeSessionReminderHandler(reminder);
   }
 
   deleteReminderHandler = () => {
@@ -33,7 +33,7 @@ export class ReminderDetails extends PureComponent {
       month,
       day,
       id,
-      deleteReminder,
+      deleteReminderHandler,
     } = this.props;
 
     const {
@@ -42,7 +42,7 @@ export class ReminderDetails extends PureComponent {
 
     const date = dateFns.format(new Date(year, month, day), 'YYYYMMDD');
 
-    deleteReminder(date, id);
+    deleteReminderHandler(date, id);
     cleanSession();
   }
 
@@ -106,22 +106,22 @@ ReminderDetails.propTypes = {
   id: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
   reminder: PropTypes.string.isRequired,
-  deleteReminder: PropTypes.func.isRequired,
-  changeSession: PropTypes.func.isRequired,
+  deleteReminderHandler: PropTypes.func.isRequired,
+  changeSessionReminderHandler: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  year: state.date.year,
-  month: state.date.month,
-  day: state.date.day,
-  reminder: state.session.reminder.reminder,
-  id: state.session.reminder.id,
-  time: state.session.reminder.time,
+  year: state.reminderState.date.year,
+  month: state.reminderState.date.month,
+  day: state.reminderState.date.day,
+  reminder: state.sessionState.reminder.reminder,
+  id: state.sessionState.reminder.id,
+  time: state.sessionState.reminder.time,
 });
 
 const mapActionToProps = dispatch => ({
-  deleteReminder: (date, id) => dispatch(DELETE_REMINDER(date, id)),
-  changeSession: reminder => dispatch(CHANGE_SESSION(null, null, reminder)),
+  deleteReminderHandler: (date, id) => dispatch(deleteReminder(date, id)),
+  changeSessionReminderHandler: reminder => dispatch(changeSessionReminder(reminder)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(ReminderDetails);

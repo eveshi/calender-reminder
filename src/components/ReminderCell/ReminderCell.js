@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { timeStringGenerator } from '../../utility/utility';
 import Button from '../Button/Button';
 
-import { CHANGE_SESSION } from '../../store/actions/index';
+import { changeSessionReminder } from '../../store/actions/index';
 
 const ReminderCell = (props) => {
   const {
     time,
     id,
     reminder,
-    changeSession,
+    changeSessionReminderHandler,
   } = props;
 
   const timeString = timeStringGenerator(time);
@@ -23,7 +23,7 @@ const ReminderCell = (props) => {
   };
 
   const changeReminderSession = () => {
-    changeSession(reminderSession);
+    changeSessionReminderHandler(reminderSession);
   };
 
   return (
@@ -40,11 +40,11 @@ ReminderCell.propTypes = {
   id: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
   reminder: PropTypes.string.isRequired,
-  changeSession: PropTypes.func.isRequired,
+  changeSessionReminderHandler: PropTypes.func.isRequired,
 };
 
 const mapActionToProps = dispatch => ({
-  changeSession: reminder => dispatch(CHANGE_SESSION(null, null, reminder)),
+  changeSessionReminderHandler: reminder => dispatch(changeSessionReminder(reminder)),
 });
 
 export default connect(null, mapActionToProps)(ReminderCell);

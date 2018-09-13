@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import reducer from './store/reducers/reducer';
+import { reminderReducer, sessionReducer } from './store/reducers/index';
 import App from './contaniers/App';
 
+const rootReducer = combineReducers({
+  reminderState: reminderReducer,
+  sessionState: sessionReducer,
+});
+
 const store = createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk),
   ),

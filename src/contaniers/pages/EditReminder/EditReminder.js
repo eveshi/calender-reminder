@@ -10,7 +10,7 @@ import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 
 import * as utility from '../../../utility/utility';
-import { POST_REMINDER, PUT_REMINDER, CHANGE_SESSION } from '../../../store/actions';
+import * as actions from '../../../store/actions';
 
 import Close from '../../../assets/icon/Close';
 import Complete from '../../../assets/icon/Complete';
@@ -61,14 +61,14 @@ export class EditReminder extends PureComponent {
 
   cleanSession = () => {
     const {
-      changeSession,
+      changeSessionReminder,
     } = this.props;
     const reminder = {
       id: null,
       time: null,
       reminder: null,
     };
-    changeSession(null, null, reminder);
+    changeSessionReminder(reminder);
   }
 
   submitReminder = () => {
@@ -189,7 +189,7 @@ EditReminder.propTypes = {
   sessionTime: PropTypes.number,
   postReminder: PropTypes.func.isRequired,
   putReminder: PropTypes.func.isRequired,
-  changeSession: PropTypes.func.isRequired,
+  changeSessionReminder: PropTypes.func.isRequired,
 };
 
 EditReminder.defaultProps = {
@@ -201,22 +201,22 @@ EditReminder.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  year: state.date.year,
-  month: state.date.month,
-  day: state.date.day,
-  sessionDate: state.session.date,
-  sessionTime: state.session.time,
-  preReminder: state.session.reminder.reminder,
-  preId: state.session.reminder.id,
-  preTime: state.session.reminder.time,
+  year: state.reminderState.date.year,
+  month: state.reminderState.date.month,
+  day: state.reminderState.date.day,
+  sessionDate: state.sessionState.date,
+  sessionTime: state.sessionState.time,
+  preReminder: state.sessionState.reminder.reminder,
+  preId: state.sessionState.reminder.id,
+  preTime: state.sessionState.reminder.time,
 });
 
 const mapActionToProps = dispatch => ({
-  postReminder: (date, time, reminder) => dispatch(POST_REMINDER(date, time, reminder)),
+  postReminder: (date, time, reminder) => dispatch(actions.postReminder(date, time, reminder)),
   putReminder: (preDate, nextDate, id, time, reminder) => dispatch(
-    PUT_REMINDER(preDate, nextDate, id, time, reminder),
+    actions.postReminder(preDate, nextDate, id, time, reminder),
   ),
-  changeSession: reminder => dispatch(CHANGE_SESSION(null, null, reminder)),
+  changeSessionReminder: reminder => dispatch(actions.changeSessionReminder(reminder)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(EditReminder);

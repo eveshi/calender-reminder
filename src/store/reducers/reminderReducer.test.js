@@ -1,5 +1,5 @@
 import dateFns from 'date-fns';
-import reducer from './reducer';
+import reducer from './reminderReducer';
 
 const currentDate = new Date();
 const currentYear = dateFns.getYear(currentDate);
@@ -7,15 +7,6 @@ const currentMonth = dateFns.getMonth(currentDate);
 const currentDay = dateFns.getDate(currentDate);
 
 const initState = {
-  session: {
-    date: null,
-    time: null,
-    reminder: {
-      id: null,
-      time: null,
-      reminder: null,
-    },
-  },
   date: {
     year: currentYear,
     month: currentMonth,

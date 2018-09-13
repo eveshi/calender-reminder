@@ -8,7 +8,7 @@ import ConnectedDatePicker from '../../../components/DatePicker/DatePicker';
 
 import AddReminder from '../../../assets/icon/AddReminder';
 
-import { CHANGE_DAY, CHANGE_SESSION } from '../../../store/actions/index';
+import { changeDay, changeSessionDate } from '../../../store/actions/index';
 import { dateStringGenerator } from '../../../utility/utility';
 
 import './CalenderAndReminder.css';
@@ -18,16 +18,16 @@ export const CalenderAndReminder = (props) => {
     year,
     month,
     day,
-    changeDay,
+    changeDayHandler,
     reminders,
-    changeSession,
+    changeSessionDateHandler,
   } = props;
 
   const dayChangeHandler = (event) => {
     const { id } = event.target;
-    changeDay(parseInt(id, 10));
+    changeDayHandler(parseInt(id, 10));
     const date = dateStringGenerator(year, month, id);
-    changeSession(date);
+    changeSessionDateHandler(date);
   };
 
   return (
@@ -55,9 +55,9 @@ CalenderAndReminder.propTypes = {
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   day: PropTypes.number.isRequired,
-  changeDay: PropTypes.func.isRequired,
+  changeDayHandler: PropTypes.func.isRequired,
   reminders: PropTypes.arrayOf(PropTypes.object),
-  changeSession: PropTypes.func.isRequired,
+  changeSessionDateHandler: PropTypes.func.isRequired,
 };
 
 CalenderAndReminder.defaultProps = {
@@ -65,15 +65,15 @@ CalenderAndReminder.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-  year: state.date.year,
-  month: state.date.month,
-  day: state.date.day,
-  reminders: state.remindersDisplay,
+  year: state.reminderState.date.year,
+  month: state.reminderState.date.month,
+  day: state.reminderState.date.day,
+  reminders: state.reminderState.remindersDisplay,
 });
 
 const mapActionToProps = dispatch => ({
-  changeDay: day => dispatch(CHANGE_DAY(day)),
-  changeSession: date => dispatch(CHANGE_SESSION(date, null, null)),
+  changeDayHandler: day => dispatch(changeDay(day)),
+  changeSessionDateHandler: date => dispatch(changeSessionDate(date)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(CalenderAndReminder);

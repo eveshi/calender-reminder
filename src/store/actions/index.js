@@ -1,12 +1,16 @@
 export {
-  CHANGE_YEAR_AND_MONTH,
-  CHANGE_DAY,
-  CHANGE_SESSION,
+  changeDay,
+  changeYearAndMonth,
 } from './date';
 
 export {
-  POST_REMINDER,
-  PUT_REMINDER,
-  GET_SINGLE_REMINDER,
-  DELETE_REMINDER,
+  postReminder,
+  putReminder,
+  deleteReminder,
 } from './reminder';
+
+export {
+  changeSessionDate,
+  changeSessionTime,
+  changeSessionReminder,
+} from './session';

@@ -1,6 +1,6 @@
 import dateFns from 'date-fns';
 
-const updateObject = (prevState, valueToChange) => {
+export const updateReminderObject = (prevState, valueToChange) => {
   const newState = {
     ...prevState,
     ...valueToChange,
@@ -24,4 +24,7 @@ const updateObject = (prevState, valueToChange) => {
   };
 };
 
-export default updateObject;
+export const updateObject = (prevState, valueToChange) => ({
+  ...prevState,
+  ...valueToChange,
+});
