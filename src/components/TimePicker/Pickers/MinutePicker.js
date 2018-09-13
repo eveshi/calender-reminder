@@ -14,7 +14,8 @@ const MinutePicker = (props) => {
   const currentHour = dateFns.getHours(new Date());
 
   const minuteInit = (datePicked <= utility.formatCurrentDate
-                      && currentHour === parseInt(hourPicked, 10))
+                      && (currentHour === parseInt(hourPicked, 10)
+                      || hourPicked === '00'))
     ? utility.minuteFiveGenerator()
     : 0;
 
