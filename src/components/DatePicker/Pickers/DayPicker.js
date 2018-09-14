@@ -1,41 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dateFns from 'date-fns';
 
 const DayPicker = (props) => {
   const {
-    yearPicked,
-    monthPicked,
+    dayArray,
     dayPicked,
     onChange,
   } = props;
 
-  const daysInMonthPicked = dateFns.getDaysInMonth(new Date(yearPicked, monthPicked, 1));
-  const dayArray = [];
-
-  const currentYear = dateFns.getYear(new Date());
-  const currentMonth = dateFns.getMonth(new Date());
-  const currentDay = dateFns.getDate(new Date());
-
-  const dayInit = (currentYear === parseInt(yearPicked, 10)
-                    && currentMonth === parseInt(monthPicked, 10))
-    ? currentDay
-    : 1;
-
-  for (let i = dayInit; i < daysInMonthPicked + 1; i += 1) {
-    dayArray.push(i);
-  }
-
-  const dayOptions = dayArray === null
-    ? null
-    : dayArray.map(day => (
-      <option
-        key={day}
-        value={day}
-      >
-        {day}
-      </option>
-    ));
+  const dayOptions = dayArray.map(day => (
+    <option
+      key={day}
+      value={day}
+    >
+      {day}
+    </option>
+  ));
 
   return (
     <select
@@ -49,9 +29,8 @@ const DayPicker = (props) => {
 };
 
 DayPicker.propTypes = {
-  yearPicked: PropTypes.string.isRequired,
-  monthPicked: PropTypes.string.isRequired,
-  dayPicked: PropTypes.string.isRequired,
+  dayArray: PropTypes.arrayOf(PropTypes.number).isRequired,
+  dayPicked: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

@@ -10,8 +10,11 @@ export {
 } from './reminder';
 
 export {
-  changeSessionDate,
-  changeSessionTime,
+  changeSessionDay,
+  changeSessionMonth,
+  changeSessionYear,
+  changeSessionHour,
+  changeSessionMinute,
   changeSessionReminder,
   cleanSession,
 } from './session';

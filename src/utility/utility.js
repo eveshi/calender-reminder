@@ -32,7 +32,7 @@ export const monthStringGenerator = (month) => {
 };
 
 export const hourStringGenerator = (hour) => {
-  let hourString = hour.toString();
+  let hourString = `${hour}`;
   if (hour < 10) {
     hourString = `0${hour}`;
   }
@@ -41,7 +41,7 @@ export const hourStringGenerator = (hour) => {
 };
 
 export const minuteStringGenerator = (minute) => {
-  let minuteString = minute.toString();
+  let minuteString = `${minute}`;
   if (minute < 10) {
     minuteString = `0${minute}`;
   }
@@ -61,9 +61,9 @@ export const dateStringGenerator = (year, month, day) => (
   dateFns.format(new Date(year, month, day), 'YYYYMMDD')
 );
 
-export const formatCurrentDate = dateFns.format(new Date(), 'YYYYMMDD');
+export const formatDate = date => dateFns.format(date, 'YYYYMMDD');
 
-export const minuteFiveGenerator = () => {
+export const currentMinuteFiveGenerator = () => {
   const currentMinute = dateFns.getMinutes(new Date());
 
   let currentMinuteDivideFive = currentMinute;
@@ -72,10 +72,31 @@ export const minuteFiveGenerator = () => {
     (currentMinuteDivideFive % 5) !== 0;
     currentMinuteDivideFive += 1);
 
+  if (currentMinuteDivideFive === 60) {
+    currentMinuteDivideFive = 0;
+  }
+
   return minuteStringGenerator(currentMinuteDivideFive);
 };
 
 export const timeIDGenerator = (hour, minute) => {
   const timeIDString = `${hour}${minute}`;
   return parseInt(timeIDString, 10);
+};
+
+export const defaultValue = (array, value) => {
+  if (array.includes(value)) {
+    return value;
+  }
+
+  return array[0];
+};
+
+export const defaultMonthValue = (array, value) => {
+  const arrayIndex = array.map(month => month.index);
+  if (arrayIndex.includes(value.index)) {
+    return value;
+  }
+
+  return array[0];
 };

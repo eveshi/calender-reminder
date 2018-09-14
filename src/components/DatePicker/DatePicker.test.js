@@ -7,12 +7,29 @@ import { DatePicker } from './DatePicker';
 configure({ adapter: new Adapter() });
 
 const props = {
-  yearInit: 2032,
-  monthInit: 6,
-  dayInit: 28,
+  yearPicked: 2019,
+  monthPicked: 8,
+  dayPicked: 3,
+  yearArray: [
+    2019,
+    2020,
+    2021,
+  ],
+  monthArray: [{
+    index: 8,
+    string: 'Sep',
+  }],
+  dayArray: [
+    1, 2, 3, 4, 5,
+  ],
   changeDay: jest.fn(),
   changeYearAndMonth: jest.fn(),
-  changeSessionDate: jest.fn(),
+  datePickerDisabled: true,
+  dayPickerDisabled: true,
+  applyButtonDisabled: true,
+  changeSessionYear: jest.fn(),
+  changeSessionMonth: jest.fn(),
+  changeSessionDay: jest.fn(),
 };
 
 describe('snapshot', () => {

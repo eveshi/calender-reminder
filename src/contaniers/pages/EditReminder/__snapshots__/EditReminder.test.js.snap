@@ -89,10 +89,10 @@ exports[`snapshot renders correctly 1`] = `
         onKeyPress={null}
         placeholder="Dinner with Danny..."
         type="text"
-        value=""
+        value="Dinner"
       />
       <p>
-        0
+        6
         /50
       </p>
     </div>

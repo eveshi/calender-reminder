@@ -1,6 +1,7 @@
 import dateFns from 'date-fns';
 import reducer from './reminderReducer';
 import * as actionTypes from '../actions/actionTypes';
+import { formatDate } from '../../utility/utility';
 
 const currentDate = new Date();
 const currentYear = dateFns.getYear(currentDate);
@@ -9,6 +10,7 @@ const currentDay = dateFns.getDate(currentDate);
 
 const initState = {
   date: {
+    date: formatDate(currentDate),
     year: currentYear,
     month: currentMonth,
     day: currentDay,
@@ -31,6 +33,7 @@ describe('reducer', () => {
     ).toEqual(
       {
         date: {
+          date: formatDate(new Date(currentYear, currentMonth, 7)),
           year: currentYear,
           month: currentMonth,
           day: 7,

@@ -78,7 +78,7 @@ exports[`snapshot renders correctly 1`] = `
     <p
       className="ReminderDetails_content_reminder"
     >
-      abcdefg
+      Dinner
     </p>
     <a
       href="/"

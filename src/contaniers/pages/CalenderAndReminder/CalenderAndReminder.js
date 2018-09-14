@@ -8,8 +8,7 @@ import ConnectedDatePicker from '../../../components/DatePicker/DatePicker';
 
 import AddReminder from '../../../assets/icon/AddReminder';
 
-import { changeDay, changeSessionDate } from '../../../store/actions/index';
-import { dateStringGenerator } from '../../../utility/utility';
+import * as actions from '../../../store/actions/index';
 
 import './CalenderAndReminder.css';
 
@@ -20,14 +19,13 @@ export const CalenderAndReminder = (props) => {
     day,
     changeDayHandler,
     reminders,
-    changeSessionDateHandler,
+    changeSessionDay,
   } = props;
 
   const dayChangeHandler = (event) => {
-    const { id } = event.target;
-    changeDayHandler(parseInt(id, 10));
-    const date = dateStringGenerator(year, month, id);
-    changeSessionDateHandler(date);
+    const newDay = parseInt(event.target.id, 10);
+    changeDayHandler(newDay);
+    changeSessionDay(newDay);
   };
 
   return (
@@ -57,7 +55,7 @@ CalenderAndReminder.propTypes = {
   day: PropTypes.number.isRequired,
   changeDayHandler: PropTypes.func.isRequired,
   reminders: PropTypes.arrayOf(PropTypes.object),
-  changeSessionDateHandler: PropTypes.func.isRequired,
+  changeSessionDay: PropTypes.func.isRequired,
 };
 
 CalenderAndReminder.defaultProps = {
@@ -72,8 +70,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = dispatch => ({
-  changeDayHandler: day => dispatch(changeDay(day)),
-  changeSessionDateHandler: date => dispatch(changeSessionDate(date)),
+  changeDayHandler: day => dispatch(actions.changeDay(day)),
+  changeSessionDay: day => dispatch(actions.changeSessionDay(day)),
 });
 
 export default connect(mapStateToProps, mapActionToProps)(CalenderAndReminder);

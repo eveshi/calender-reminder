@@ -8,12 +8,23 @@ import { EditReminder } from './EditReminder';
 configure({ adapter: new Adapter() });
 
 const props = {
-  year: 2033,
-  month: 7,
-  day: 18,
+  yearPicked: 2019,
+  monthPicked: 8,
+  dayPicked: 3,
+  preDate: '20200312',
+  preID: 1330515905123,
+  preTime: 1604,
+  hourPicked: '00',
+  minutePicked: '00',
+  datePicked: '20190803',
+  timePicked: 1708,
+  reminder: 'Dinner',
+  cleanSession: jest.fn(),
   postReminder: jest.fn(),
   putReminder: jest.fn(),
   changeSessionReminder: jest.fn(),
+  changeDay: jest.fn(),
+  changeYearAndMonth: jest.fn(),
 };
 
 jest.mock('../../../components/DatePicker/DatePicker.js', () => () => (

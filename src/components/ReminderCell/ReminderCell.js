@@ -22,12 +22,8 @@ const ReminderCell = (props) => {
     reminder,
   };
 
-  const changeReminderSession = () => {
-    changeSessionReminderHandler(reminderSession);
-  };
-
   return (
-    <Button onClick={() => changeReminderSession()}>
+    <Button onClick={() => changeSessionReminderHandler(reminderSession)}>
       <Link to="/reminder_details">
         <p className="Reminder_ReminderCell_timeString">{timeString}</p>
         <p className="Reminder_ReminderCell_reminder">{reminder}</p>
@@ -37,7 +33,7 @@ const ReminderCell = (props) => {
 };
 
 ReminderCell.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   time: PropTypes.number.isRequired,
   reminder: PropTypes.string.isRequired,
   changeSessionReminderHandler: PropTypes.func.isRequired,

@@ -1,115 +1,73 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { changeSessionTime } from '../../store/actions/index';
-import { timeIDGenerator } from '../../utility/utility';
+import * as actions from '../../store/actions/index';
 
 import HourPicker from './Pickers/HourPicker';
 import MinutePicker from './Pickers/MinutePicker';
 
 import './TimePicker.css';
 
-export class TimePicker extends PureComponent {
-  state = {
-    hourPicked: '00',
-    minutePicked: '00',
-  }
+export const TimePicker = (props) => {
+  const {
+    hourPicked,
+    minutePicked,
+    hourArray,
+    minuteArray,
+    changeSessionHour,
+    changeSessionMinute,
+  } = props;
 
-  componentDidMount() {
-    const {
-      hourInit,
-      minuteInit,
-    } = this.props;
-
-    if (hourInit == null) {
-      return;
-    }
-
-    this.setState({
-      hourPicked: hourInit,
-      minutePicked: minuteInit,
-    });
-  }
-
-  timeChangeHandler = (event, selector) => {
-    const {
-      changeSessionTimeHandler,
-    } = this.props;
-
+  const timeChangeHandler = (event, selector) => {
     const { value } = event.target;
-    let {
-      hourPicked,
-      minutePicked,
-    } = this.state;
 
     if (selector === 'hour') {
-      hourPicked = value;
-      this.setState({
-        hourPicked,
-      });
+      changeSessionHour(value);
     }
 
     if (selector === 'minute') {
-      minutePicked = value;
-      this.setState({
-        minutePicked,
-      });
+      changeSessionMinute(value);
     }
+  };
 
-    const timeID = timeIDGenerator(hourPicked, minutePicked);
-
-    changeSessionTimeHandler(timeID);
-  }
-
-  render() {
-    const {
-      hourPicked,
-      minutePicked,
-    } = this.state;
-
-    const {
-      timeChangeHandler,
-    } = this;
-
-    const {
-      datePicked,
-    } = this.props;
-
-    return (
-      <form className="TimePicker">
-        <HourPicker
-          datePicked={datePicked}
-          hourPicked={hourPicked}
-          onChange={event => timeChangeHandler(event, 'hour')}
-        />
-        <p className="TimePicker_select">:</p>
-        <MinutePicker
-          datePicked={datePicked}
-          hourPicked={hourPicked}
-          minutePicked={minutePicked}
-          onChange={event => timeChangeHandler(event, 'minute')}
-        />
-      </form>
-    );
-  }
-}
+  return (
+    <form className="TimePicker">
+      <HourPicker
+        hourPicked={hourPicked}
+        hourArray={hourArray}
+        onChange={event => timeChangeHandler(event, 'hour')}
+      />
+      <p className="TimePicker_select">:</p>
+      <MinutePicker
+        minutePicked={minutePicked}
+        minuteArray={minuteArray}
+        onChange={event => timeChangeHandler(event, 'minute')}
+      />
+    </form>
+  );
+};
 
 TimePicker.propTypes = {
-  hourInit: PropTypes.string,
-  minuteInit: PropTypes.string,
-  datePicked: PropTypes.string.isRequired,
-  changeSessionTimeHandler: PropTypes.func.isRequired,
+  hourPicked: PropTypes.string.isRequired,
+  minutePicked: PropTypes.string.isRequired,
+  hourArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  minuteArray: PropTypes.arrayOf(PropTypes.string).isRequired,
+  changeSessionHour: PropTypes.func.isRequired,
+  changeSessionMinute: PropTypes.func.isRequired,
 };
 
-TimePicker.defaultProps = {
-  hourInit: '00',
-  minuteInit: '00',
-};
+const mapStateToProps = state => ({
+  hourPicked: state.sessionState.hour,
+  minutePicked: state.sessionState.minute,
+  hourArray: state.sessionState.hourArray,
+  minuteArray: state.sessionState.minuteArray,
+});
 
 const mapActionToProps = dispatch => ({
-  changeSessionTimeHandler: time => dispatch(changeSessionTime(time)),
+  changeSessionHour: hour => dispatch(actions.changeSessionHour(hour)),
+  changeSessionMinute: minute => dispatch(actions.changeSessionMinute(minute)),
 });
 
 
-export default connect(null, mapActionToProps)(TimePicker);
+export default connect(mapStateToProps, mapActionToProps)(TimePicker);

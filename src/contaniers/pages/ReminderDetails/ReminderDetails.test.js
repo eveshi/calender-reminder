@@ -11,11 +11,12 @@ const props = {
   year: 2033,
   month: 7,
   day: 18,
-  id: '12345678',
+  id: 1330515905123,
   time: 1200,
-  reminder: 'abcdefg',
-  deleteReminderHandler: jest.fn(),
-  changeSessionReminderHandler: jest.fn(),
+  date: '20330718',
+  reminder: 'Dinner',
+  deleteReminder: jest.fn(),
+  cleanSession: jest.fn(),
 };
 
 describe('snapshot', () => {

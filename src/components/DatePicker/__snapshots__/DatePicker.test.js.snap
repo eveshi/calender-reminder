@@ -14,12 +14,12 @@ exports[`snapshot renders correctly 1`] = `
     <p
       className="DatePicker_date"
     >
-      2032
+      2019
     </p>
     <p
       className="DatePicker_date"
     >
-      Jul
+      Sep
     </p>
     <p
       className="DatePicker_date"

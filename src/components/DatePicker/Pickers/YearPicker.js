@@ -1,29 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dateFns from 'date-fns';
 
 const YearPicker = (props) => {
   const {
     yearPicked,
+    yearArray,
     onChange,
   } = props;
 
-  const currentYear = dateFns.getYear(new Date());
-  const yearArray = [];
-  for (let i = currentYear; i < currentYear + 31; i += 1) {
-    yearArray.push(i);
-  }
-
-  const yearOptions = yearArray === null
-    ? null
-    : yearArray.map(year => (
-      <option
-        key={year}
-        value={year}
-      >
-        {year}
-      </option>
-    ));
+  const yearOptions = yearArray.map(year => (
+    <option
+      key={year}
+      value={year}
+    >
+      {year}
+    </option>
+  ));
 
   return (
     <select
@@ -37,7 +29,8 @@ const YearPicker = (props) => {
 };
 
 YearPicker.propTypes = {
-  yearPicked: PropTypes.string.isRequired,
+  yearPicked: PropTypes.number.isRequired,
+  yearArray: PropTypes.arrayOf(PropTypes.number).isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

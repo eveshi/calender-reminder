@@ -1,6 +1,7 @@
 import dateFns from 'date-fns';
 import * as actionTypes from '../actions/actionTypes';
-import { updateReminderObject } from '../utility';
+import { updateReminderObject } from '../utility/updateObject';
+import { formatDate } from '../../utility/utility';
 
 const currentDate = new Date();
 const currentYear = dateFns.getYear(currentDate);
@@ -9,6 +10,7 @@ const currentDay = dateFns.getDate(currentDate);
 
 const initialState = {
   date: {
+    date: formatDate(currentDate),
     year: currentYear,
     month: currentMonth,
     day: currentDay,
@@ -18,9 +20,14 @@ const initialState = {
 };
 
 const changeDay = (state, action) => {
+  const {
+    year,
+    month,
+  } = state.date;
   const valueToChange = {
     date: {
       ...state.date,
+      date: formatDate(new Date(year, month, action.day)),
       day: action.day,
     },
   };
@@ -29,9 +36,13 @@ const changeDay = (state, action) => {
 };
 
 const changeYearAndMonth = (state, action) => {
+  const {
+    day,
+  } = state.date;
   const valueToChange = {
     date: {
       ...state.date,
+      dete: formatDate(new Date(action.year, action.month, day)),
       year: action.year,
       month: action.month,
     },
@@ -44,7 +55,7 @@ const postReminder = (state, action) => {
   const dateReminders = state.allReminders[action.date] == null
     ? []
     : [...state.allReminders[action.date]];
-  const id = `${action.date}${action.time}`;
+  const id = dateFns.getTime(new Date());
   const reminderObject = {
     id,
     time: action.time,
